@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\cuclogo.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\welcome.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\toolbar1.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\toolbar2.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\toolbar.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\toolbar3.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\Toolbar256.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\toolbar4.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\bitmap3.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\About_bg.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_play.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_about.png">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_about.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_pause.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_seek_b.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_seek_f.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_sound.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_stop.png">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_stop.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\main_theme.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_stop_f.png">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_stop_u.png">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_stop_f.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_fullscreen.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_seek_step.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_exit.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_stop_h.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_about_h.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_exit_h.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_fullscreen_h.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_pause_h.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_seek_b_h.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_seek_f_h.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_seek_step_h.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_about_d.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_exit_d.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_fullscreen_d.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_pause_d.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_seek_b_d.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_seek_f_d.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_seek_step_d.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_stop_d.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_play_h.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_play_d.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="res\button\bitmap4.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\welcome_en.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\main_theme_en.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\button\main_the.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\VideoEye.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\ico\logo_blue_128.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\ico\logo_blue - 副本.png">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\ico\ve.ico">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cmdutils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cmdutils_common_opts.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Welcome.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="InputList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Videodecode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Audiodecode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Dataoutput.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Assistantmediainfo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Rawanalysis.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MediaInfoDLL.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Optplayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Dfanalysis.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoEye.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoEyeDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ve_play.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Dfanalysispic.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Sysinfo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cmdutils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Welcome.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="InputList.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Videodecode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Audiodecode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Dataoutput.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Assistantmediainfo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Rawanalysis.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Optplayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Dfanalysis.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoEye.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoEyeDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ve_play.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Dfanalysispic.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Sysinfo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VideoEye.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

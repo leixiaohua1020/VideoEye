@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<playlist>
+    <trackList>
+        <track>
+            <location>rtmp://live.cctvfinance.com/cctvcj/live1 live=1</location>
+            <title>[直播]CCTV证券</title>
+        </track>
+        <track>
+            <location>rtmp://pub1.guoshi.com/live/newcetv1 live=1</location>
+            <title>[直播]中国教育电视台1</title>
+        </track>
+        <track>
+			<location>rtmp://pub1.guoshi.com/live/newcetv3 live=1</location>
+            <title>[直播]中国教育电视台3</title>
+        </track>
+		<track>
+            <location>rtmp://61.158.144.13/live/chinese live=1</location>
+            <title>[直播]中国教育电视台：汉语频道</title>
+        </track>
+		<track>
+            <location>rtmp://pub1.guoshi.com/live/kk live=1</location>
+            <title>[直播]中国教育电视台：空中课堂</title>
+        </track>
+		<track>
+            <location>rtmp://live.hkstv.hk.lxdns.com/live/hks live=1</location>
+            <title>[直播]香港卫视</title>
+        </track>
+		<track>
+            <location>rtmp://www.bj-mobiletv.com:8000/live/live1 live=1</location>
+            <title>[直播]北广传媒移动电视</title>
+        </track>
+		<track>
+            <location>rtmp://202.205.18.115/live/qq live=1</location>
+            <title>[直播]中国传媒大学电视台</title>
+        </track>
+		<track>
+            <location>rtmp://streaming.cctvpic.com/vod/mp4:v/2011/04/26/e54781b5d3f548472c8780826b05c33f_h264218000nero_aac32.mp4 playpath=mp4:v/2011/04/26/e54781b5d3f548472c8780826b05c33f_h264218000nero_aac32.mp4</location>
+            <title>[点播]CNTV百家讲坛【曾国藩家训】（250kbps）</title>
+        </track>
+		<track>
+            <location>rtmp://streaming.cctvpic.com/vod/mp4:v/2011/04/26/e54781b5d3f548472c8780826b05c33f_h264418000nero_aac32.mp4 playpath=mp4:v/2011/04/26/e54781b5d3f548472c8780826b05c33f_h264418000nero_aac32.mp4</location>
+            <title>[点播]CNTV百家讲坛【曾国藩家训】（450kbps）</title>
+        </track>
+		<track>
+            <location>rtmp://streaming.cctvpic.com/vod/mp4:v/2011/04/26/e54781b5d3f548472c8780826b05c33f_h264818000nero_aac32.mp4 playpath=mp4:v/2011/04/26/e54781b5d3f548472c8780826b05c33f_h264818000nero_aac32.mp4</location>
+            <title>[点播]CNTV百家讲坛【曾国藩家训】（850kbps）</title>
+        </track>
+		<track>
+            <location>rtmp://202.205.18.115/vod/mp4:1321958887593hd.mp4</location>
+            <title>[点播]校园电视台：听说很好看第13期</title>
+        </track>
+		<track>
+            <location>rtmp://202.205.18.115/vod/mp4:1322252926703hd.mp4</location>
+            <title>[点播]校园电视台：好多娱第06期</title>
+        </track>
+		<track>
+            <location>rtmp://202.205.18.115/vod/mp4:1324136465313hd.mp4</location>
+            <title>[点播]校园电视台：2010-12-6中传新闻下</title>
+        </track>
+		<track>
+            <location>rtmp://202.205.18.115/vod/mp4:1321325704984hd.mp4</location>
+            <title>[点播]校园电视台：校歌</title>
+        </track>
+    </trackList>
+</playlist>

@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B55BB375-C6CD-4056-BCAC-011917EFB44B}</ProjectGuid>
+    <RootNamespace>qoedialog</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <ProjectName>VideoEye</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>.\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>avcodec.lib;avformat.lib;avutil.lib;avdevice.lib;avfilter.lib;postproc.lib;swresample.lib;swscale.lib;SDL.lib;tinyxml.lib;Winmm.lib;Ws2_32.lib;opencv_core231.lib;opencv_highgui231.lib;opencv_imgproc231.lib;opencv_objdetect231.lib</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT.lib;msvcprtd.lib;MSVCRTD.lib</IgnoreSpecificDefaultLibraries>
+      <StackCommitSize>
+      </StackCommitSize>
+      <StackReserveSize>10000000</StackReserveSize>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0804</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\include;</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>.\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>avcodec.lib;avformat.lib;avutil.lib;avdevice.lib;avfilter.lib;postproc.lib;swresample.lib;swscale.lib;SDL.lib;tinyxml.lib;Winmm.lib;Ws2_32.lib;opencv_core231.lib;opencv_highgui231.lib;opencv_imgproc231.lib;opencv_objdetect231.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <StackReserveSize>10000000</StackReserveSize>
+      <IgnoreSpecificDefaultLibraries>LIBCMT.lib;</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0804</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ReadMe.txt" />
+    <None Include="res\About_bg.bmp" />
+    <None Include="res\bitmap3.bmp" />
+    <None Include="res\button\bitmap4.bmp" />
+    <None Include="res\button\main_about.bmp" />
+    <None Include="res\button\main_about.png" />
+    <None Include="res\button\main_about_d.bmp" />
+    <None Include="res\button\main_about_h.bmp" />
+    <None Include="res\button\main_exit.bmp" />
+    <None Include="res\button\main_exit_d.bmp" />
+    <None Include="res\button\main_exit_h.bmp" />
+    <None Include="res\button\main_fullscreen.bmp" />
+    <None Include="res\button\main_fullscreen_d.bmp" />
+    <None Include="res\button\main_fullscreen_h.bmp" />
+    <None Include="res\button\main_pause.bmp" />
+    <None Include="res\button\main_pause_d.bmp" />
+    <None Include="res\button\main_pause_h.bmp" />
+    <None Include="res\button\main_play.bmp" />
+    <None Include="res\button\main_play_d.bmp" />
+    <None Include="res\button\main_play_h.bmp" />
+    <None Include="res\button\main_seek_b.bmp" />
+    <None Include="res\button\main_seek_b_d.bmp" />
+    <None Include="res\button\main_seek_b_h.bmp" />
+    <None Include="res\button\main_seek_f.bmp" />
+    <None Include="res\button\main_seek_f_d.bmp" />
+    <None Include="res\button\main_seek_f_h.bmp" />
+    <None Include="res\button\main_seek_step.bmp" />
+    <None Include="res\button\main_seek_step_d.bmp" />
+    <None Include="res\button\main_seek_step_h.bmp" />
+    <None Include="res\button\main_sound.bmp" />
+    <None Include="res\button\main_stop.bmp" />
+    <None Include="res\button\main_stop.png" />
+    <None Include="res\button\main_stop_d.bmp" />
+    <None Include="res\button\main_stop_f.bmp" />
+    <None Include="res\button\main_stop_f.png" />
+    <None Include="res\button\main_stop_h.bmp" />
+    <None Include="res\button\main_stop_u.png" />
+    <None Include="res\button\main_the.bmp" />
+    <None Include="res\cuclogo.bmp" />
+    <None Include="res\ico\logo_blue - 副本.png" />
+    <None Include="res\ico\logo_blue_128.ico" />
+    <None Include="res\ico\ve.ico" />
+    <None Include="res\main_theme.bmp" />
+    <None Include="res\main_theme_en.bmp" />
+    <None Include="res\VideoEye.rc2" />
+    <None Include="res\toolbar.bmp" />
+    <None Include="res\toolbar1.bmp" />
+    <None Include="res\toolbar2.bmp" />
+    <None Include="res\Toolbar256.bmp" />
+    <None Include="res\toolbar3.bmp" />
+    <None Include="res\toolbar4.bmp" />
+    <None Include="res\welcome.bmp" />
+    <None Include="res\welcome_en.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Assistantmediainfo.h" />
+    <ClInclude Include="Audiodecode.h" />
+    <ClInclude Include="cmdutils.h" />
+    <ClInclude Include="cmdutils_common_opts.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="Dataoutput.h" />
+    <ClInclude Include="Dfanalysis.h" />
+    <ClInclude Include="Dfanalysispic.h" />
+    <ClInclude Include="MediaInfoDLL.h" />
+    <ClInclude Include="Optplayer.h" />
+    <ClInclude Include="Sysinfo.h" />
+    <ClInclude Include="ve_play.h" />
+    <ClInclude Include="InputList.h" />
+    <ClInclude Include="Rawanalysis.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="VideoEye.h" />
+    <ClInclude Include="VideoEyeDlg.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Videodecode.h" />
+    <ClInclude Include="Welcome.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Assistantmediainfo.cpp" />
+    <ClCompile Include="Audiodecode.cpp" />
+    <ClCompile Include="cmdutils.cpp" />
+    <ClCompile Include="Dataoutput.cpp" />
+    <ClCompile Include="Dfanalysis.cpp" />
+    <ClCompile Include="Dfanalysispic.cpp" />
+    <ClCompile Include="Optplayer.cpp" />
+    <ClCompile Include="Sysinfo.cpp" />
+    <ClCompile Include="ve_play.cpp" />
+    <ClCompile Include="InputList.cpp" />
+    <ClCompile Include="Rawanalysis.cpp" />
+    <ClCompile Include="VideoEye.cpp" />
+    <ClCompile Include="VideoEyeDlg.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Videodecode.cpp" />
+    <ClCompile Include="Welcome.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VideoEye.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="VideoEye.rc" _x007B_B6C10489-FB89-11D4-93C9-006008A7EED4_x007D_="CTchart1" _x007B_8856F961-340A-11D0-A96B-00C04FD705A2_x007D_="CGettrueurl_explorer" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

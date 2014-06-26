@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<playlist>
+    <trackList>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3002</location>
+            <title>CCTV1 综合频道</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3003</location>
+            <title>CCTV2 财经频道</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3065</location>
+            <title>CCTV3 综艺频道</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3066</location>
+            <title>CCTV4 中文国际</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3004</location>
+            <title>CCTV5 体育频道</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3005</location>
+            <title>CCTV6 电影频道</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3067</location>
+            <title>CCTV7 军事农业</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3006</location>
+            <title>CCTV8 电视剧</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3007</location>
+            <title>CCTV NEWS</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3068</location>
+            <title>CCTV10 科教频道</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3069</location>
+            <title>CCTV11 戏曲频道</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3070</location>
+            <title>CCTV12 社会与法</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3033</location>
+            <title>CCTV13 新闻频道</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3072</location>
+            <title>CCTV14 少儿频道</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3073</location>
+            <title>CCTV15 音乐频道</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3090</location>
+            <title>CCTV 高清频道</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3105</location>
+            <title>安徽卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3084</location>
+            <title>北京卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3116</location>
+            <title>重庆卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3010</location>
+            <title>东方电影</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3020</location>
+            <title>东方卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3132</location>
+            <title>东南卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3024</location>
+            <title>东视戏剧</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3022</location>
+            <title>东视娱乐</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3115</location>
+            <title>甘肃卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3121</location>
+            <title>广东卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3102</location>
+            <title>广西卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3136</location>
+            <title>贵州卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3087</location>
+            <title>河北卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3134</location>
+            <title>河南卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3101</location>
+            <title>黑龙江卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3129</location>
+            <title>湖北卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3128</location>
+            <title>湖南卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3083</location>
+            <title>吉林卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3026</location>
+            <title>纪实频道</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3104</location>
+            <title>江苏卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3131</location>
+            <title>江西卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3119</location>
+            <title>辽宁卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3114</location>
+            <title>旅游卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3120</location>
+            <title>内蒙古卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3113</location>
+            <title>宁夏卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3088</location>
+            <title>山东卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3085</location>
+            <title>山西卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3103</location>
+            <title>陕西卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3017</location>
+            <title>上海第1财经</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3032</location>
+            <title>上海教育</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3025</location>
+            <title>上海外语</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3018</location>
+            <title>上海电视剧</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3016</location>
+            <title>上视星尚</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3019</location>
+            <title>上视五星体育</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3009</location>
+            <title>上视新闻综合</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3130</location>
+            <title>四川卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3086</location>
+            <title>天津卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3112</location>
+            <title>西藏卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3135</location>
+            <title>新疆卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::242]:3023</location>
+            <title>艺术人文</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3117</location>
+            <title>云南卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::244]:3118</location>
+            <title>浙江卫视</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3071</location>
+            <title>中国教育1套</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3039</location>
+            <title>City 都市剧场</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3077</location>
+            <title>Documentary 全纪实</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3082</location>
+            <title>HD</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3036</location>
+            <title>max 极速汽车</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3040</location>
+            <title>sitv 白金剧场</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3100</location>
+            <title>sitv 点播影院</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3098</location>
+            <title>sitv 动作影院</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3096</location>
+            <title>sitv 海外影院</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3099</location>
+            <title>sitv 怀旧影院</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3054</location>
+            <title>sitv 劲爆足球</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3052</location>
+            <title>sitv 经典剧场</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3053</location>
+            <title>sitv 立体娱乐</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3097</location>
+            <title>sitv 情感影院</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3050</location>
+            <title>生活时尚</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3038</location>
+            <title>sitv 首映剧场</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3055</location>
+            <title>sitv 五星体育</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3049</location>
+            <title>sitv 学习考试</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3048</location>
+            <title>sitv 英语教室</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3037</location>
+            <title>sitv 娱乐前线</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3089</location>
+            <title>sitv 资讯气象</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3075</location>
+            <title>动漫秀场</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3056</location>
+            <title>法治天地</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3080</location>
+            <title>哈哈少儿</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3041</location>
+            <title>欢笑剧场</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3042</location>
+            <title>金色频道</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3064</location>
+            <title>魅力音乐</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3081</location>
+            <title>动漫卡通</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::243]:3074</location>
+            <title>游戏风云</title>
+        </track>
+        <track>
+            <location>http://[2001:da8:8000:6007::241]:3058</location>
+            <title>劲爆体育</title>
+        </track>
+    </trackList>
+</playlist>
