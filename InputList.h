@@ -65,7 +65,7 @@ public:
 
 	//设置值的时候用到
 	CVideoEyeDlg *maindlg;
-	afx_msg void OnInputlistHelp();
+//	afx_msg void OnInputlistHelp();
 
 	//一条记录
 	typedef struct Track{

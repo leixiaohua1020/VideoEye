@@ -75,6 +75,8 @@ void Dfanalysis::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_DFANALYSIS_AUTO, m_dfanalysisauto);
 	DDX_Control(pDX, IDC_DFANALYSIS_OUTPICFOLDER, m_dfanalysisoutpicfolder);
 	DDX_Control(pDX, IDC_DFANALYSIS_OUTPICFOLDER_URL, m_dfanalysisoutpicfolderurl);
+	DDX_Control(pDX, IDC_DFANALYSIS_OUTDATAFOLDER, m_dfanalysisoutdatafolder);
+	DDX_Control(pDX, IDC_DFANALYSIS_OUTDATAFOLDER_URL, m_dfanalysisoutdatafolderurl);
 }
 
 
@@ -87,6 +89,7 @@ BEGIN_MESSAGE_MAP(Dfanalysis, CDialogEx)
 //	ON_WM_CLOSE()
 ON_WM_DESTROY()
 ON_BN_CLICKED(IDC_DFANALYSIS_OUTPICFOLDER, &Dfanalysis::OnClickedDfanalysisOutpicfolder)
+ON_BN_CLICKED(IDC_DFANALYSIS_OUTDATAFOLDER, &Dfanalysis::OnClickedDfanalysisOutdatafolder)
 END_MESSAGE_MAP()
 
 
@@ -136,9 +139,9 @@ BOOL Dfanalysis::OnInitDialog(){
 	resloader.LoadString(IDS_DFANALYSIS_OPT_MV1);
 	prop_mv1=new CMFCPropertyGridProperty(resloader);
 	resloader.LoadString(IDS_DFANALYSIS_OPT_GLOBAL_MBBORDER);
-	prop_global_showmbedge=new CMFCPropertyGridProperty(resloader,(_variant_t) true, "显示每个宏块的边界");
+	prop_global_showmbedge=new CMFCPropertyGridProperty(resloader,(_variant_t) true, _T(""));
 	resloader.LoadString(IDS_DFANALYSIS_OPT_GLOBAL_MBBORDER_COLOR);
-	prop_global_showmbedge_color=new CMFCPropertyGridColorProperty(resloader,RGB(0, 0, 0), NULL, "宏块边界的颜色");
+	prop_global_showmbedge_color=new CMFCPropertyGridColorProperty(resloader,RGB(0, 0, 0), NULL,_T(""));
 	//字体
 	//LOGFONT lf;
 	//CFont* font = CFont::FromHandle((HFONT) GetStockObject(DEFAULT_GUI_FONT));
@@ -147,33 +150,33 @@ BOOL Dfanalysis::OnInitDialog(){
 	//prop_global_font=new CMFCPropertyGridFontProperty(resloader, lf, CF_EFFECTS | CF_SCREENFONTS, "画图时的字体");
 
 	resloader.LoadString(IDS_DFANALYSIS_OPT_GLOBAL_WINSIZE);
-	prop_global_winsize=new CMFCPropertyGridProperty(resloader,(_variant_t) 120, "窗口大小（相对于视频原始大小）");
+	prop_global_winsize=new CMFCPropertyGridProperty(resloader,(_variant_t) 120, _T(""));
 	prop_global_winsize->EnableSpinControl(TRUE,80,200);
 
 	resloader.LoadString(IDS_DFANALYSIS_OPT_Q_SHOWVAL);
-	prop_q_shownum=new CMFCPropertyGridProperty(resloader,(_variant_t) true, "显示每个宏块的QP值");
+	prop_q_shownum=new CMFCPropertyGridProperty(resloader,(_variant_t) true, _T(""));
 	resloader.LoadString(IDS_DFANALYSIS_OPT_Q_SHOWCOLOR);
-	prop_q_showcolor=new CMFCPropertyGridProperty(resloader, (_variant_t) false,  "显示每个宏块的QP值的颜色");
+	prop_q_showcolor=new CMFCPropertyGridProperty(resloader, (_variant_t) false,  _T(""));
 	resloader.LoadString(IDS_DFANALYSIS_OPT_MBTYPE_SHOWSUBMB);
-	prop_mb_type_showsubmb=new CMFCPropertyGridProperty(resloader,(_variant_t) true, "显示每个宏块的子宏块");
+	prop_mb_type_showsubmb=new CMFCPropertyGridProperty(resloader,(_variant_t) true, _T(""));
 	resloader.LoadString(IDS_DFANALYSIS_OPT_MBTYPE_SHOWCOLOR);
-	prop_mb_type_showcolor=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "根据宏块的类型显示颜色");
+	prop_mb_type_showcolor=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_DFANALYSIS_OPT_MBTYPE_SHOWSKIP);
-	prop_mb_type_showskip=new CMFCPropertyGridProperty(resloader,(_variant_t) true, "显示skip宏块");
+	prop_mb_type_showskip=new CMFCPropertyGridProperty(resloader,(_variant_t) true, _T(""));
 	resloader.LoadString(IDS_DFANALYSIS_OPT_MBTYPE_SHOWLIST);
-	prop_mb_type_showlist=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "显示宏块使用的list");
+	prop_mb_type_showlist=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_DFANALYSIS_OPT_MV0_COLOR);
-	prop_mv0_colortype=new CMFCPropertyGridColorProperty(resloader,RGB(255, 0, 0), NULL, "运动矢量的颜色");
-	prop_mv0_colortype->EnableOtherButton(_T("其他..."));
-	prop_mv0_colortype->EnableAutomaticButton(_T("默认"), ::GetSysColor(COLOR_3DFACE));
+	prop_mv0_colortype=new CMFCPropertyGridColorProperty(resloader,RGB(255, 0, 0), NULL, _T(""));
+	prop_mv0_colortype->EnableOtherButton(_T("Other..."));
+	prop_mv0_colortype->EnableAutomaticButton(_T("Default"), ::GetSysColor(COLOR_3DFACE));
 	resloader.LoadString(IDS_DFANALYSIS_OPT_MV0_STYLE);
-	prop_mv0_linetype=new CMFCPropertyGridProperty(resloader,(_variant_t) "line", "运动矢量的样式");
+	prop_mv0_linetype=new CMFCPropertyGridProperty(resloader,(_variant_t) "line", _T(""));
 	resloader.LoadString(IDS_DFANALYSIS_OPT_MV1_COLOR);
-	prop_mv1_colortype=new CMFCPropertyGridColorProperty(resloader,RGB(0, 0, 255), NULL, "运动矢量的颜色");
-	prop_mv1_colortype->EnableOtherButton(_T("其他..."));
-	prop_mv1_colortype->EnableAutomaticButton(_T("默认"), ::GetSysColor(COLOR_3DFACE));
+	prop_mv1_colortype=new CMFCPropertyGridColorProperty(resloader,RGB(0, 0, 255), NULL, _T(""));
+	prop_mv1_colortype->EnableOtherButton(_T("Other..."));
+	prop_mv1_colortype->EnableAutomaticButton(_T("Default"), ::GetSysColor(COLOR_3DFACE));
 	resloader.LoadString(IDS_DFANALYSIS_OPT_MV1_STYLE);
-	prop_mv1_linetype=new CMFCPropertyGridProperty(resloader,(_variant_t) "line", "运动矢量的样式");
+	prop_mv1_linetype=new CMFCPropertyGridProperty(resloader,(_variant_t) "line", _T(""));
 	prop_global->AddSubItem(prop_global_showmbedge);
 	prop_global->AddSubItem(prop_global_showmbedge_color);
 	//prop_global->AddSubItem(prop_global_font);
@@ -186,13 +189,13 @@ BOOL Dfanalysis::OnInitDialog(){
 	prop_mb_type->AddSubItem(prop_mb_type_showlist);
 	prop_mv0->AddSubItem(prop_mv0_colortype);
 	prop_mv0->AddSubItem(prop_mv0_linetype);
-	prop_mv0->AddOption("line");
-	prop_mv0->AddOption("arrow");
+	prop_mv0->AddOption(_T("line"));
+	prop_mv0->AddOption(_T("arrow"));
 	prop_mv0->AllowEdit(FALSE);
 	prop_mv1->AddSubItem(prop_mv1_colortype);
 	prop_mv1->AddSubItem(prop_mv1_linetype);
-	prop_mv1->AddOption("line");
-	prop_mv1->AddOption("arrow");
+	prop_mv1->AddOption(_T("line"));
+	prop_mv1->AddOption(_T("arrow"));
 	prop_mv1->AllowEdit(FALSE);
 	m_dfanalysisoption.AddProperty(prop_global);
 	m_dfanalysisoption.AddProperty(prop_q);
@@ -201,13 +204,29 @@ BOOL Dfanalysis::OnInitDialog(){
 	m_dfanalysisoption.AddProperty(prop_mv1);
 	//------------------
 	m_dfanalysisoutpicfolderurl.EnableFolderBrowseButton();
-	char realpath[MAX_URL_LENGTH]={0};
-	//生成文件路径
-	_getcwd(realpath,MAX_URL_LENGTH);
-	strcat(realpath,"\\dfanalysispic");
-	m_dfanalysisoutpicfolderurl.SetWindowText(realpath);
+	m_dfanalysisoutdatafolderurl.EnableFolderBrowseButton();
+	
+	TCHAR realpathpic[MAX_URL_LENGTH]={0};   	
+	TCHAR realpathdata[MAX_URL_LENGTH]={0};   	
+	
 
+	//生成文件路径
+	GetCurrentDirectory(MAX_URL_LENGTH,realpathpic);
+	GetCurrentDirectory(MAX_URL_LENGTH,realpathdata);
+
+	CString realpathpic1(realpathpic);
+	CString realpathdata1(realpathdata);
+
+	realpathpic1.Append(_T("\\dfanalysispic"));
+	realpathdata1.Append(_T("\\dfanalysisdata"));
+
+
+	m_dfanalysisoutpicfolderurl.SetWindowText(realpathpic1);
 	m_dfanalysisoutpicfolderurl.EnableWindow(FALSE);
+
+	m_dfanalysisoutdatafolderurl.SetWindowText(realpathdata1);
+	m_dfanalysisoutdatafolderurl.EnableWindow(FALSE);
+
 	//------------------
 	picdlg=new Dfanalysispic;
 	picdlg->Create(IDD_DFANALYSIS_PIC,NULL);
@@ -272,54 +291,54 @@ void Dfanalysis::DrawPic(){
 	GetOption();
 	//设置参数------------------
 	CString temp;
-	temp.Format("%d",mb_width);
+	temp.Format(_T("%d"),mb_width);
 	m_dfanalysismbwidth.SetWindowText(temp);
-	temp.Format("%d",mb_sum/mb_width);
+	temp.Format(_T("%d"),mb_sum/mb_width);
 	m_dfanalysismbheight.SetWindowText(temp);
-	temp.Format("%d",mb_sum);
+	temp.Format(_T("%d"),mb_sum);
 	m_dfanalysismbsum.SetWindowText(temp);
 	//每个宏块包含的运动矢量
 	int mv_sample_log2_temp= 4 - motion_subsample_log2;
-	temp.Format("%d",1<<(mv_sample_log2_temp*2));
+	temp.Format(_T("%d"),1<<(mv_sample_log2_temp*2));
 	m_dfanalysismvsubsample.SetWindowText(temp);
 	//后添加的几个参数---------------------
-	temp.Format("%d",frame_index);
+	temp.Format(_T("%d"),frame_index);
 	m_dfanalysismbframeindex.SetWindowText(temp);
-	temp.Format("%ld",pts);
+	temp.Format(_T("%ld"),pts);
 	m_dfanalysismbpts.SetWindowText(temp);
-	temp.Format("%.3fs",ptime);
+	temp.Format(_T("%.3fs"),ptime);
 	m_dfanalysismbptime.SetWindowText(temp);
 	switch(pict_type){
 	case AV_PICTURE_TYPE_I:
-		temp.Format("I");
+		temp.Format(_T("I"));
 		m_dfanalysismbpictype.SetWindowText(temp);
 		break;
 	case AV_PICTURE_TYPE_B:
-		temp.Format("B");
+		temp.Format(_T("B"));
 		m_dfanalysismbpictype.SetWindowText(temp);
 		break;
 	case AV_PICTURE_TYPE_P:
-		temp.Format("P");
+		temp.Format(_T("P"));
 		m_dfanalysismbpictype.SetWindowText(temp);
 		break;
 	default:
-		temp.Format("Other");
+		temp.Format(_T("Other"));
 		m_dfanalysismbpictype.SetWindowText(temp);
 		break;
 	}
-	temp.Format("%d",refs);
+	temp.Format(_T("%d"),refs);
 	m_dfanalysismbref.SetWindowText(temp);
 	switch(qscale_type){
 	case FF_QSCALE_TYPE_MPEG1:
-		temp.Format("MPEG1");break;
+		temp.Format(_T("MPEG1"));break;
 	case FF_QSCALE_TYPE_MPEG2:
-		temp.Format("MPEG2");break;
+		temp.Format(_T("MPEG2"));break;
 	case FF_QSCALE_TYPE_H264:
-		temp.Format("H.264");break;
+		temp.Format(_T("H.264"));break;
 	case FF_QSCALE_TYPE_VP56:
-		temp.Format("VP5,VP6");break;
+		temp.Format(_T("VP5,VP6"));break;
 	default:
-		temp.Format("Unknown");break;
+		temp.Format(_T("Unknown"));break;
 	}
 	m_dfanalysismbqtype.SetWindowText(temp);
 	
@@ -359,8 +378,8 @@ void Dfanalysis::DrawPic(){
 	int totalq=0;
 	int maxq=0;
 	int minq=100;
-	//----------------------------------
-
+	//输出数据----------------------------------
+	CString datastat;
 
 	//画网格图
 	//step_w,step_h网格的宽和高
@@ -380,7 +399,7 @@ void Dfanalysis::DrawPic(){
 	for(j=0;j<(mb_sum/mb_stride);j++){
 		//for(i=0;i<mb_stride;i++){
 		//最右侧一行总为0，先不输出
-		for(i=0;i<mb_stride-1;i++){
+		for(i=0;i<mb_width;i++){
 			//生成一个Rect
 			CRect rect(i*step_w,j*step_h,(i+1)*step_w,(j+1)*step_h);
 			//宏块个数
@@ -390,7 +409,11 @@ void Dfanalysis::DrawPic(){
 			switch(m_dfanalysismethod.GetCurSel()){
 			case DRAW_Q:{
 				qval=qscale_table[num];
-				qval_s.Format("%d",qval);
+				qval_s.Format(_T("%d"),qval);
+				//输出数据
+				if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+					datastat.AppendFormat(_T("%d,"),qval);
+				
 				//等比拉伸一下
 				//qp取值范围0-51，颜色取值范围0-255
 				if(prop_q_showcolor_val!=FALSE){
@@ -436,6 +459,11 @@ void Dfanalysis::DrawPic(){
 
 				mbtype=mb_type[num];
 				if(mbtype&MB_TYPE_INTRA4x4){
+					//输出数据
+					if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+						datastat.AppendFormat(_T("intra4x4,"));
+					
+
 					//4x4宏块
 					if(prop_mb_type_showcolor_val!=FALSE){
 						pBrush->CreateSolidBrush(RGB(255,0,0));
@@ -462,6 +490,13 @@ void Dfanalysis::DrawPic(){
 					//-----
 				}
 				if(mbtype&MB_TYPE_INTRA16x16){
+
+					//输出数据
+					if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+						datastat.AppendFormat(_T("intra16x16,"));
+					
+
+
 					if(prop_mb_type_showcolor_val!=FALSE){
 						pBrush->CreateSolidBrush(RGB(128,0,0));
 						pDC->FillRect(rect,pBrush);
@@ -479,6 +514,12 @@ void Dfanalysis::DrawPic(){
 					}
 				}
 				if(mbtype&MB_TYPE_16x16){
+
+					//输出数据
+					if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+						datastat.AppendFormat(_T("16x16,"));
+					
+
 					if(prop_mb_type_showcolor_val!=FALSE){
 						pBrush->CreateSolidBrush(RGB(255,99,0));
 						pDC->FillRect(rect,pBrush);//棕黄
@@ -489,6 +530,12 @@ void Dfanalysis::DrawPic(){
 					//-----
 				}
 				if(mbtype&MB_TYPE_16x8){
+
+					//输出数据
+					if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+						datastat.AppendFormat(_T("16x8,"));
+					
+
 					if(prop_mb_type_showcolor_val!=FALSE){
 						pBrush->CreateSolidBrush(RGB(0,99,0));
 						pDC->FillRect(rect,pBrush);
@@ -508,6 +555,13 @@ void Dfanalysis::DrawPic(){
 					//-----
 				}
 				if(mbtype&MB_TYPE_8x16){
+
+					//输出数据
+					if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+						datastat.AppendFormat(_T("8x16,"));
+					
+
+
 					if(prop_mb_type_showcolor_val!=FALSE){
 						pBrush->CreateSolidBrush(RGB(255,99,255));
 						pDC->FillRect(rect,pBrush);
@@ -527,6 +581,12 @@ void Dfanalysis::DrawPic(){
 					//-----
 				}
 				if(mbtype&MB_TYPE_8x8){
+
+					//输出数据
+					if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+						datastat.AppendFormat(_T("8x8,"));
+					
+
 					if(prop_mb_type_showcolor_val!=FALSE){
 						pBrush->CreateSolidBrush(RGB(0,99,255));
 						pDC->FillRect(rect,pBrush);
@@ -557,7 +617,7 @@ void Dfanalysis::DrawPic(){
 						//背景色透明
 						pDC->SetBkMode(TRANSPARENT);
 						//输出字符
-						pDC->TextOut(rect.left+2,rect.top+2,"s");
+						pDC->TextOut(rect.left+2,rect.top+2,_T("s"));
 					}
 					//-----
 					total_skip++;
@@ -628,7 +688,14 @@ void Dfanalysis::DrawPic(){
 				//-------------
 				int mv_sample_log2= 4 - motion_subsample_log2;
 				//一行MV的个数
-				int mv_stride= (mb_width << mv_sample_log2)/*+1*/;
+				//FIX:目前发现H.264的mv_stride和MPEG4，RMVB不一样
+				//只能区别处理
+				int mv_stride=0;
+				if(codec_id==AV_CODEC_ID_H264){
+					mv_stride=(mb_width << mv_sample_log2);
+				}else{
+					mv_stride=(mb_width << mv_sample_log2)+1;
+				}
 				//一排宏块包含的MV个数
 				int mv_mb_stride= mv_stride<<mv_sample_log2;
 				//一个宏块一行或一列MV个数
@@ -642,6 +709,10 @@ void Dfanalysis::DrawPic(){
 				pen.CreatePen(PS_SOLID,0,prop_mv0_colortype_val);
 				pDC->SelectObject(pen);
 				int m,n;
+				//输出数据[宏块边界]
+				if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+					datastat.AppendFormat(_T("[,"));
+				
 				//按行和列画出m代表列，n代表行
 				for(m=0;m<mv_sample;m++){
 					for(n=0;n<mv_sample;n++){
@@ -651,8 +722,16 @@ void Dfanalysis::DrawPic(){
 						pDC->LineTo(rect.left+n*rect.Width()/mv_sample+mv[0],rect.top+m*rect.Height()/mv_sample+mv[1]);
 						//画出来的是箭头而不是直线
 						//ArrowTo1(pDC->m_hDC,rect.left+n*rect.Width()/mv_sample+mv[0],rect.top+m*rect.Height()/mv_sample+mv[1],&a);
+						//输出数据
+						if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+							datastat.AppendFormat(_T("(%d-%d),"),mv[0],mv[1]);
+						
 					}
 				}
+				//输出数据[宏块边界]
+				if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+					datastat.AppendFormat(_T("],"));
+				
 				break;
 						  }
 			case DRAW_MV1:{
@@ -679,6 +758,12 @@ void Dfanalysis::DrawPic(){
 				pen.CreatePen(PS_SOLID,0,prop_mv1_colortype_val);
 				pDC->SelectObject(pen);
 				int m,n;
+
+				//输出数据[宏块边界]
+				if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+					datastat.AppendFormat(_T("[,"));
+				
+
 				//按行和列画出m代表列，n代表行
 				for(m=0;m<mv_sample;m++){
 					for(n=0;n<mv_sample;n++){
@@ -686,8 +771,19 @@ void Dfanalysis::DrawPic(){
 						mv[1]=motion_val1[mv_num+n+m*mv_stride][1];
 						pDC->MoveTo(rect.left+n*rect.Width()/mv_sample,rect.top+m*rect.Height()/mv_sample);
 						pDC->LineTo(rect.left+n*rect.Width()/mv_sample+mv[0],rect.top+m*rect.Height()/mv_sample+mv[1]);
+
+						//输出数据
+						if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+							datastat.AppendFormat(_T("(%d-%d),"),mv[0],mv[1]);
+						
 					}
 				}
+
+				//输出数据[宏块边界]
+				if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+					datastat.AppendFormat(_T("],"));
+				
+
 				break;
 						  }
 			case DRAW_REFINDEX0:{
@@ -702,7 +798,12 @@ void Dfanalysis::DrawPic(){
 				//此处只提取第一个
 				//如果提取四个的话，屏幕会显示不下的= =
 				refval=ref_index0[num*4];
-				refval_s.Format("%d",refval);
+				refval_s.Format(_T("%d"),refval);
+
+				//输出数据
+				if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+					datastat.AppendFormat(_T("%d,"),refval);
+
 				//等比拉伸一下
 				//假设参考帧最大值是16帧
 				//拉伸，平移
@@ -730,7 +831,12 @@ void Dfanalysis::DrawPic(){
 				//此处只提取第一个
 				//如果提取四个的话，屏幕会显示不下的= =
 				refval=ref_index1[num*4];
-				refval_s.Format("%d",refval);
+				refval_s.Format(_T("%d"),refval);
+
+				//输出数据
+				if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+					datastat.AppendFormat(_T("%d,"),refval);
+
 				//等比拉伸一下
 				//假设参考帧最大值是16帧
 				//拉伸，平移
@@ -748,6 +854,10 @@ void Dfanalysis::DrawPic(){
 								}
 			}
 		}
+		//数据输出，统计完一行宏块
+		if(m_dfanalysisoutdatafolder.GetCheck()==TRUE)
+			datastat.AppendFormat(_T("\n"));
+		
 	}
 	//输出统计量----------------
 	if(m_dfanalysismethod.GetCurSel()==DRAW_MB_TYPE){
@@ -814,16 +924,38 @@ void Dfanalysis::DrawPic(){
 		CreateDirectory(folder_url,NULL);
 
 		switch(m_dfanalysismethod.GetCurSel()){
-		case DRAW_Q:pic_name.Format("qp_%d.bmp",frame_index);break;
-		case DRAW_MB_TYPE:pic_name.Format("mbtype_%d.bmp",frame_index);break;
-		case DRAW_MV0:pic_name.Format("mv0_%d.bmp",frame_index);break;
-		case DRAW_MV1:pic_name.Format("mv1_%d.bmp",frame_index);break;
-		case DRAW_REFINDEX0:pic_name.Format("refindex_%d.bmp",frame_index);break;
-		case DRAW_REFINDEX1:pic_name.Format("refindex_%d.bmp",frame_index);break;
+		case DRAW_Q:pic_name.Format(_T("qp_%d.bmp"),frame_index);break;
+		case DRAW_MB_TYPE:pic_name.Format(_T("mbtype_%d.bmp"),frame_index);break;
+		case DRAW_MV0:pic_name.Format(_T("mv0_%d.bmp"),frame_index);break;
+		case DRAW_MV1:pic_name.Format(_T("mv1_%d.bmp"),frame_index);break;
+		case DRAW_REFINDEX0:pic_name.Format(_T("refindex_%d.bmp"),frame_index);break;
+		case DRAW_REFINDEX1:pic_name.Format(_T("refindex_%d.bmp"),frame_index);break;
 		}
 
-		folder_url.AppendFormat("\\%s",pic_name);
+		folder_url.AppendFormat(_T("\\%s"),pic_name);
 		SaveBmp(hpic, folder_url);
+	}
+
+	//保存数据
+	if(m_dfanalysisoutdatafolder.GetCheck()==TRUE){
+		CString folder_url,data_name;
+		m_dfanalysisoutdatafolderurl.GetWindowText(folder_url);
+		//检查文件夹路径是否存在
+		CreateDirectory(folder_url,NULL);
+
+		switch(m_dfanalysismethod.GetCurSel()){
+		case DRAW_Q:data_name.Format(_T("qp_%d.csv"),frame_index);break;
+		case DRAW_MB_TYPE:data_name.Format(_T("mbtype_%d.csv"),frame_index);break;
+		case DRAW_MV0:data_name.Format(_T("mv0_%d.csv"),frame_index);break;
+		case DRAW_MV1:data_name.Format(_T("mv1_%d.csv"),frame_index);break;
+		case DRAW_REFINDEX0:data_name.Format(_T("refindex_%d.csv"),frame_index);break;
+		case DRAW_REFINDEX1:data_name.Format(_T("refindex_%d.csv"),frame_index);break;
+		}
+
+		folder_url.AppendFormat(_T("\\%s"),data_name);
+		CFile mFile(folder_url,CFile::modeReadWrite|CFile::modeCreate);
+		mFile.Write(datastat,datastat.GetLength()*sizeof(TCHAR));
+		mFile.Close();
 	}
 }
 
@@ -1008,7 +1140,7 @@ void Dfanalysis::DrawSample(){
 	//背景色透明
 	pDC->SetBkMode(TRANSPARENT);
 	//输出字符
-	pDC->TextOut(rect.left+2,rect.top+2,"s");
+	pDC->TextOut(rect.left+2,rect.top+2,_T("s"));
 	//画线-------
 	pDC=GetDlgItem(IDC_DFANALYSIS_SAMPLE_L0)->GetDC();
 	GetDlgItem(IDC_DFANALYSIS_SAMPLE_L0)->GetClientRect(&rect);
@@ -1125,7 +1257,7 @@ void Dfanalysis::OnBnClickedCancel()
 HBITMAP Dfanalysis::CopyDCToBitmap(HDC hScrDC, LPRECT lpRect)
 {
 	if(hScrDC==NULL || lpRect==NULL || IsRectEmpty(lpRect)){
-		AfxMessageBox("参数错误");
+		AfxMessageBox(_T("Parameter Error"));
 		return NULL;
 	}
 
@@ -1189,7 +1321,7 @@ BOOL Dfanalysis::SaveBmp(HBITMAP hBitmap, CString FileName)
 	HANDLE fh, hDib, hPal,hOldPal=NULL; 
 
 	//计算位图文件每个像素所占字节数 
-	hDC = CreateDC("DISPLAY", NULL, NULL, NULL); 
+	hDC = CreateDC(_T("DISPLAY"), NULL, NULL, NULL); 
 	iBits = GetDeviceCaps(hDC, BITSPIXEL) * GetDeviceCaps(hDC, PLANES); 
 	DeleteDC(hDC); 
 	if (iBits <= 1) wBitCount = 1; 
@@ -1279,5 +1411,15 @@ void Dfanalysis::OnClickedDfanalysisOutpicfolder()
 		m_dfanalysisoutpicfolderurl.EnableWindow(FALSE);
 	}else{
 		m_dfanalysisoutpicfolderurl.EnableWindow(TRUE);
+	}
+}
+
+
+void Dfanalysis::OnClickedDfanalysisOutdatafolder()
+{
+	if(m_dfanalysisoutdatafolder.GetCheck()==FALSE){
+		m_dfanalysisoutdatafolderurl.EnableWindow(FALSE);
+	}else{
+		m_dfanalysisoutdatafolderurl.EnableWindow(TRUE);
 	}
 }

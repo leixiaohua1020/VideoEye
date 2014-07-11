@@ -1,0 +1,11 @@
+
+                ChangeLog file for VideoEye
+
+
+Changes in 0.2:
+- Add Unicode Character Set Support
+- Fixed "INT64_MIN INT64_MAX" Error
+- Change CTreeCtrl in InputList Dialog
+- Add data output function in Video Detail Analysis Dialog (QP,MBtype,MV.. can output as .csv file)
+- Fix an error about MPEG4's motion vector analysis funcion in Video Detail Analysis Dialog
+- Fix a bug in resize function of Video Window

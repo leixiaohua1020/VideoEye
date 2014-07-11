@@ -78,6 +78,7 @@ public:
      * - decoding: Set by libavcodec.
      */
 	int motion_subsample_log2;
+	int codec_id;
 	int mb_width;
 	//ÏñËØÊý¾Ý
 	uint8_t *data[AV_NUM_DATA_POINTERS];
@@ -191,4 +192,7 @@ public:
 	CButton m_dfanalysisoutpicfolder;
 	CMFCEditBrowseCtrl m_dfanalysisoutpicfolderurl;
 	afx_msg void OnClickedDfanalysisOutpicfolder();
+	CButton m_dfanalysisoutdatafolder;
+	CMFCEditBrowseCtrl m_dfanalysisoutdatafolderurl;
+	afx_msg void OnClickedDfanalysisOutdatafolder();
 };

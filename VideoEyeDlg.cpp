@@ -16,8 +16,6 @@
 #include "VideoEyeDlg.h"
 #include "afxdialogex.h"
 
-
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -48,7 +46,70 @@ CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
 {
 	CString resloader;
 	resloader.LoadString(IDS_ABOUTBOX_INTRO);
-	m_intro.Format("%s",resloader);
+	m_intro.Format(_T("%s"),resloader);
+	//Version Info
+#if 0
+	DWORD dwLen = 0;
+	char* lpData=NULL;
+	BOOL bSuccess = FALSE;
+
+	//配置文件路径
+	LPSTR exe_path=(LPSTR)malloc(MAX_URL_LENGTH);
+	//获得exe绝对路径
+	GetModuleFileNameA(NULL,(LPSTR)exe_path,MAX_URL_LENGTH);//
+
+	dwLen = GetFileVersionInfoSize((LPCTSTR)exe_path, 0);
+	if ( dwLen==0 ){
+	  return ;
+	}
+	lpData =new char [dwLen+1];
+	bSuccess = GetFileVersionInfo((LPCTSTR)exe_path, 0, dwLen, lpData);
+	if (!bSuccess){
+	  delete lpData;
+	  return ;
+	}
+	free(exe_path);
+
+
+	LPVOID lpBuffer = NULL;
+	UINT uLen = 0;
+
+	bSuccess = VerQueryValue(lpData, 
+				  TEXT("\\StringFileInfo\\080404b0\\CompanyName"), 
+				  &lpBuffer, 
+				  &uLen); 
+					  //0804中文
+					  //04b0即1252,ANSI
+					  //可以从ResourceView中的Version中BlockHeader中看到
+					  //可以测试的属性
+				 
+					//CompanyName 
+					//FileDescription 
+					//FileVersion 
+					//InternalName 
+					//LegalCopyright
+					//OriginalFilename
+					//ProductName 
+					//ProductVersion 
+					//Comments
+					//LegalTrademarks 
+					//PrivateBuild 
+					//SpecialBuild 
+		 
+	 if (!bSuccess)
+	 {
+	  delete lpData;
+	  return ;
+	 }
+	 for (int i= 0; i<=uLen; i++)
+	 {
+			char a = ((char *)lpBuffer)[i];
+	 }
+		TRACE("%s",lpBuffer);
+
+ 
+	 delete [] lpData;//此处不需要释放lpBuffer指向的空间,因为lpBuffer和lpData指向同一块内存空间
+#endif
 }
 
 void CAboutDlg::DoDataExchange(CDataExchange* pDX)
@@ -247,7 +308,7 @@ BOOL CVideoEyeDlg::OnInitDialog()
 	//检查内存泄露
 	//在程序开始启动的地方(足够前的地方,只要在泄漏的内存分配的前面)使用代码
 	//参数为内存块地址“{}”中的数字
-	//_CrtSetBreakAlloc(689);
+	//_CrtSetBreakAlloc(5253);
 
 	//初始化图片按钮
 	InitBitmapButton();
@@ -265,10 +326,18 @@ BOOL CVideoEyeDlg::OnInitDialog()
 	is_playing=0;
 	//支持在系统中右键打开----------------------
 	//当传入参数的时候
+	
+
+#ifdef _UNICODE
+	USES_CONVERSION;
+	wchar_t* argvPath = __targv[1];
+#else
 	char* argvPath = __targv[1];
+#endif
+
 	if(argvPath != NULL){ 
 		//设置路径
-		m_inputurl.SetWindowTextA(argvPath);
+		m_inputurl.SetWindowText(argvPath);
 		OnBnClickedOk();
 	}
 
@@ -359,7 +428,14 @@ void CVideoEyeDlg::OnBnClickedOk()
 
 int CVideoEyeDlg::GetURL()
 {
-	m_inputurl.GetWindowText(url,MAX_URL_LENGTH);
+	LPTSTR urlstr=(LPTSTR)malloc(MAX_URL_LENGTH);
+	m_inputurl.GetWindowText((LPTSTR)urlstr,MAX_URL_LENGTH);
+#ifdef _UNICODE
+	USES_CONVERSION;
+	strcpy(url,W2A(urlstr));
+#else
+	strcpy(url,urlstr);
+#endif
 	if(strcmp(url,"")==0){
 		CString resloader;
 		resloader.LoadString(IDS_MSGBOX_NOURL);
@@ -412,29 +488,29 @@ void CVideoEyeDlg::OnBnClickedInputurlbutton()
 	CString FilePathName;
 	//文件过滤字符串。够长
 	CString strfilter;
-	strfilter.Append("Common media formats|*.avi;*.wmv;*.wmp;*.wm;*.asf;*.rm;*.ram;*.rmvb;*.ra;*.mpg;*.mpeg;*.mpe;*.m1v;*.m2v;*.mpv2;");
-	strfilter.Append("*.mp2v;*.dat;*.mp4;*.m4v;*.m4p;*.vob;*.ac3;*.dts;*.mov;*.qt;*.mr;*.3gp;*.3gpp;*.3g2;*.3gp2;*.swf;*.ogg;*.wma;*.wav;");
-	strfilter.Append("*.mid;*.midi;*.mpa;*.mp2;*.mp3;*.m1a;*.m2a;*.m4a;*.aac;*.mkv;*.ogm;*.m4b;*.tp;*.ts;*.tpr;*.pva;*.pss;*.wv;*.m2ts;*.evo;");
-	strfilter.Append("*.rpm;*.realpix;*.rt;*.smi;*.smil;*.scm;*.aif;*.aiff;*.aifc;*.amr;*.amv;*.au;*.acc;*.dsa;*.dsm;*.dsv;*.dss;*.pmp;*.smk;*.flic|");
-	strfilter.Append("Windows Media Video(*.avi;*wmv;*wmp;*wm;*asf)|*.avi;*.wmv;*.wmp;*.wm;*.asf|");
-	strfilter.Append("Windows Media Audio(*.wma;*wav;*aif;*aifc;*aiff;*mid;*midi;*rmi)|*.wma;*.wav;*.aif;*.aifc;*.aiff;*.mid;*.midi;*.rmi|");
-	strfilter.Append("Real(*.rm;*ram;*rmvb;*rpm;*ra;*rt;*rp;*smi;*smil;*.scm)|*.rm;*.ram;*.rmvb;*.rpm;*.ra;*.rt;*.rp;*.smi;*.smil;*.scm|");
-	strfilter.Append("MPEG Video(*.mpg;*mpeg;*mpe;*m1v;*m2v;*mpv2;*mp2v;*dat;*mp4;*m4v;*m4p;*m4b;*ts;*tp;*tpr;*pva;*pss;*.wv;)|");
-	strfilter.Append("*.mpg;*.mpeg;*.mpe;*.m1v;*.m2v;*.mpv2;*.mp2v;*.dat;*.mp4;*.m4v;*.m4p;*.m4b;*.ts;*.tp;*.tpr;*.pva;*.pss;*.wv;|");
-	strfilter.Append("MPEG Audio(*.mpa;*mp2;*m1a;*m2a;*m4a;*aac;*.m2ts;*.evo)|*.mpa;*.mp2;*.m1a;*.m2a;*.m4a;*.aac;*.m2ts;*.evo|");
-	strfilter.Append("DVD(*.vob;*ifo;*ac3;*dts)|*.vob;*.ifo;*.ac3;*.dts|MP3(*.mp3)|*.mp3|CD Tracks(*.cda)|*.cda|");
-	strfilter.Append("Quicktime(*.mov;*qt;*mr;*3gp;*3gpp;*3g2;*3gp2)|*.mov;*.qt;*.mr;*.3gp;*.3gpp;*.3g2;*.3gp2|");
-	strfilter.Append("Flash Files(*.flv;*swf;*.f4v)|*.flv;*.swf;*.f4v|Playlist(*.smpl;*.asx;*m3u;*pls;*wvx;*wax;*wmx;*mpcpl)|*.smpl;*.asx;*.m3u;*.pls;*.wvx;*.wax;*.wmx;*.mpcpl|");
-	strfilter.Append("Others(*.ivf;*au;*snd;*ogm;*ogg;*fli;*flc;*flic;*d2v;*mkv;*pmp;*mka;*smk;*bik;*ratdvd;*roq;*drc;*dsm;*dsv;*dsa;*dss;*mpc;*divx;*vp6;*.ape;*.flac;*.tta;*.csf)");
-	strfilter.Append("|*.ivf;*.au;*.snd;*.ogm;*.ogg;*.fli;*.flc;*.flic;*.d2v;*.mkv;*.pmp;*.mka;*.smk;*.bik;*.ratdvd;*.roq;*.drc;*.dsm;*.dsv;*.dsa;*.dss;*.mpc;*.divx;*.vp6;*.ape;*.amr;*.flac;*.tta;*.csf|");
-	strfilter.Append("All Files(*.*)|*.*||");
+	strfilter.Append(_T("Common media formats|*.avi;*.wmv;*.wmp;*.wm;*.asf;*.rm;*.ram;*.rmvb;*.ra;*.mpg;*.mpeg;*.mpe;*.m1v;*.m2v;*.mpv2;"));
+	strfilter.Append(_T("*.mp2v;*.dat;*.mp4;*.m4v;*.m4p;*.vob;*.ac3;*.dts;*.mov;*.qt;*.mr;*.3gp;*.3gpp;*.3g2;*.3gp2;*.swf;*.ogg;*.wma;*.wav;"));
+	strfilter.Append(_T("*.mid;*.midi;*.mpa;*.mp2;*.mp3;*.m1a;*.m2a;*.m4a;*.aac;*.mkv;*.ogm;*.m4b;*.tp;*.ts;*.tpr;*.pva;*.pss;*.wv;*.m2ts;*.evo;"));
+	strfilter.Append(_T("*.rpm;*.realpix;*.rt;*.smi;*.smil;*.scm;*.aif;*.aiff;*.aifc;*.amr;*.amv;*.au;*.acc;*.dsa;*.dsm;*.dsv;*.dss;*.pmp;*.smk;*.flic|"));
+	strfilter.Append(_T("Windows Media Video(*.avi;*wmv;*wmp;*wm;*asf)|*.avi;*.wmv;*.wmp;*.wm;*.asf|"));
+	strfilter.Append(_T("Windows Media Audio(*.wma;*wav;*aif;*aifc;*aiff;*mid;*midi;*rmi)|*.wma;*.wav;*.aif;*.aifc;*.aiff;*.mid;*.midi;*.rmi|"));
+	strfilter.Append(_T("Real(*.rm;*ram;*rmvb;*rpm;*ra;*rt;*rp;*smi;*smil;*.scm)|*.rm;*.ram;*.rmvb;*.rpm;*.ra;*.rt;*.rp;*.smi;*.smil;*.scm|"));
+	strfilter.Append(_T("MPEG Video(*.mpg;*mpeg;*mpe;*m1v;*m2v;*mpv2;*mp2v;*dat;*mp4;*m4v;*m4p;*m4b;*ts;*tp;*tpr;*pva;*pss;*.wv;)|"));
+	strfilter.Append(_T("*.mpg;*.mpeg;*.mpe;*.m1v;*.m2v;*.mpv2;*.mp2v;*.dat;*.mp4;*.m4v;*.m4p;*.m4b;*.ts;*.tp;*.tpr;*.pva;*.pss;*.wv;|"));
+	strfilter.Append(_T("MPEG Audio(*.mpa;*mp2;*m1a;*m2a;*m4a;*aac;*.m2ts;*.evo)|*.mpa;*.mp2;*.m1a;*.m2a;*.m4a;*.aac;*.m2ts;*.evo|"));
+	strfilter.Append(_T("DVD(*.vob;*ifo;*ac3;*dts)|*.vob;*.ifo;*.ac3;*.dts|MP3(*.mp3)|*.mp3|CD Tracks(*.cda)|*.cda|"));
+	strfilter.Append(_T("Quicktime(*.mov;*qt;*mr;*3gp;*3gpp;*3g2;*3gp2)|*.mov;*.qt;*.mr;*.3gp;*.3gpp;*.3g2;*.3gp2|"));
+	strfilter.Append(_T("Flash Files(*.flv;*swf;*.f4v)|*.flv;*.swf;*.f4v|Playlist(*.smpl;*.asx;*m3u;*pls;*wvx;*wax;*wmx;*mpcpl)|*.smpl;*.asx;*.m3u;*.pls;*.wvx;*.wax;*.wmx;*.mpcpl|"));
+	strfilter.Append(_T("Others(*.ivf;*au;*snd;*ogm;*ogg;*fli;*flc;*flic;*d2v;*mkv;*pmp;*mka;*smk;*bik;*ratdvd;*roq;*drc;*dsm;*dsv;*dsa;*dss;*mpc;*divx;*vp6;*.ape;*.flac;*.tta;*.csf)"));
+	strfilter.Append(_T("|*.ivf;*.au;*.snd;*.ogm;*.ogg;*.fli;*.flc;*.flic;*.d2v;*.mkv;*.pmp;*.mka;*.smk;*.bik;*.ratdvd;*.roq;*.drc;*.dsm;*.dsv;*.dsa;*.dss;*.mpc;*.divx;*.vp6;*.ape;*.amr;*.flac;*.tta;*.csf|"));
+	strfilter.Append(_T("All Files(*.*)|*.*||"));
 	
 	
 	LPCTSTR lpszfilter=strfilter;
 	CFileDialog dlg(TRUE,NULL,NULL,NULL,lpszfilter);///TRUE为OPEN对话框，FALSE为SAVE AS对话框 
 	if(dlg.DoModal()==IDOK) {
 		FilePathName=dlg.GetPathName();
-		m_inputurl.SetWindowTextA(FilePathName);
+		m_inputurl.SetWindowText(FilePathName);
 	}
 
 }
@@ -445,9 +521,19 @@ void CVideoEyeDlg::OnBnClickedInputurlbutton()
 void CVideoEyeDlg::OnDropFiles(HDROP hDropInfo)
 {
 	CDialogEx::OnDropFiles(hDropInfo);
+
 	char* pFilePathName =(char *)malloc(MAX_URL_LENGTH);
-	::DragQueryFile(hDropInfo, 0, pFilePathName,MAX_URL_LENGTH);  // 获取拖放文件的完整文件名，最关键！
-	m_inputurl.SetWindowTextA(pFilePathName);
+	::DragQueryFileA(hDropInfo, 0, pFilePathName,MAX_URL_LENGTH);  // 获取拖放文件的完整文件名，最关键！
+	CString FilePathName;
+
+#ifdef _UNICODE
+	USES_CONVERSION;
+	FilePathName.Format(_T("%s"),A2W(pFilePathName));
+#else
+	FilePathName.Format(_T("%s"),pFilePathName);
+#endif
+	m_inputurl.SetWindowText(FilePathName);
+
 	::DragFinish(hDropInfo);   // 注意这个不能少，它用于释放Windows 为处理文件拖放而分配的内存
 	free(pFilePathName);
 }
@@ -501,13 +587,13 @@ void CVideoEyeDlg::OnHelpDoc()
 	//获得exe文家夹路径
 	strrchr(realpath, '\\')[0]= '\0';//倒着查找对应的字符'\\'，替换成'\0'
 	strcat(realpath,"\\helpdoc.pdf");
-	ShellExecute( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
+	ShellExecuteA( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
 }
 
 
 void CVideoEyeDlg::OnHelpHomepage()
 {
-	ShellExecute(NULL, "open","http://blog.csdn.net/leixiaohua1020",NULL,NULL,SW_SHOWNORMAL);
+	ShellExecuteA(NULL, "open","http://blog.csdn.net/leixiaohua1020",NULL,NULL,SW_SHOWNORMAL);
 }
 
 
@@ -754,7 +840,7 @@ void CVideoEyeDlg::OnSpecialPRtmp()
 	strrchr(realpath, '\\')[0]= '\0';//倒着查找对应的字符'\\'，替换成'\0'
 	strcat(realpath,"\\SpecialPRTMP.exe");
 	//打开文件
-	ShellExecute( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
+	ShellExecuteA( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
 }
 
 
@@ -777,7 +863,7 @@ void CVideoEyeDlg::OnSpecialVIJpg()
 	strrchr(realpath, '\\')[0]= '\0';//倒着查找对应的字符'\\'，替换成'\0'
 	strcat(realpath,"\\SpecialVIJPG.exe");
 	//打开文件
-	ShellExecute( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
+	ShellExecuteA( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
 }
 
 
@@ -846,7 +932,7 @@ void CVideoEyeDlg::OnSpecialFFlv()
 	strrchr(realpath, '\\')[0]= '\0';//倒着查找对应的字符'\\'，替换成'\0'
 	strcat(realpath,"\\SpecialFFLV.exe");
 	//打开文件
-	ShellExecute( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
+	ShellExecuteA( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
 }
 
 
@@ -861,7 +947,7 @@ void CVideoEyeDlg::OnSpecialAAac()
 	strrchr(realpath, '\\')[0]= '\0';//倒着查找对应的字符'\\'，替换成'\0'
 	strcat(realpath,"\\SpecialAAAC.exe");
 	//打开文件
-	ShellExecute( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
+	ShellExecuteA( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
 }
 
 
@@ -874,7 +960,7 @@ void CVideoEyeDlg::OnSpecialFTs()
 	strrchr(realpath, '\\')[0]= '\0';//倒着查找对应的字符'\\'，替换成'\0'
 	strcat(realpath,"\\SpecialFTS.exe");
 	//打开文件
-	ShellExecute( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
+	ShellExecuteA( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
 }
 
 
@@ -887,7 +973,7 @@ void CVideoEyeDlg::OnSpecialVH264()
 	strrchr(realpath, '\\')[0]= '\0';//倒着查找对应的字符'\\'，替换成'\0'
 	strcat(realpath,"\\SpecialVH264.exe");
 	//打开文件
-	ShellExecute( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
+	ShellExecuteA( NULL,"open",realpath,NULL,NULL,SW_SHOWNORMAL);
 }
 
 
@@ -1155,14 +1241,18 @@ void CVideoEyeDlg::OnLangCn()
 	printf("%s",conf_path);
 	strcat(conf_path,"\\configure.ini");
 	//写入配置文件
-	WritePrivateProfileString("Settings","language","Chinese",conf_path);
+	WritePrivateProfileStringA("Settings","language","Chinese",conf_path);
 
 	//重启软件
 	char exe_path[300]={0};
 	//获得exe绝对路径
 	GetModuleFileNameA(NULL,(LPSTR)exe_path,300);
-	ShellExecute( NULL,"open",exe_path,NULL,NULL,SW_SHOWNORMAL);
+	ShellExecuteA( NULL,"open",exe_path,NULL,NULL,SW_SHOWNORMAL);
 
+	//先点一下暂停
+	OnClickedStop();
+	//释放子窗口
+	FreeSubWindow();
 	CDialogEx::OnCancel();
 }
 
@@ -1179,14 +1269,18 @@ void CVideoEyeDlg::OnLangEn()
 	printf("%s",conf_path);
 	strcat(conf_path,"\\configure.ini");
 	//写入配置文件
-	WritePrivateProfileString("Settings","language","English",conf_path);
+	WritePrivateProfileStringA("Settings","language","English",conf_path);
 
 	//重启软件
 	char exe_path[300]={0};
 	//获得exe绝对路径
 	GetModuleFileNameA(NULL,(LPSTR)exe_path,300);
-	ShellExecute( NULL,"open",exe_path,NULL,NULL,SW_SHOWNORMAL);
+	ShellExecuteA( NULL,"open",exe_path,NULL,NULL,SW_SHOWNORMAL);
 
+	//先点一下暂停
+	OnClickedStop();
+	//释放子窗口
+	FreeSubWindow();
 	CDialogEx::OnCancel();
 }
 

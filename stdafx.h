@@ -51,6 +51,19 @@
 
 #include <afxcontrolbars.h>     // 功能区和控件条的 MFC 支持
 
+
+
+#ifdef _UNICODE
+#if defined _M_IX86
+#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#elif defined _M_X64
+#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#else
+#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#endif
+#endif
+
+//FFmpeg
 extern "C"
 {
 #include "libavutil/avstring.h"
@@ -73,20 +86,9 @@ extern "C"
 }
 
 
-
-
-
-
-
-#ifdef _UNICODE
-#if defined _M_IX86
-#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
-#elif defined _M_X64
-#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
-#else
-#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
-#endif
-#endif
+//补充定义
+#define INT64_MIN       (-9223372036854775807i64 - 1)
+#define INT64_MAX       9223372036854775807i64
 
 //最多存储的帧信息
 #define MAX_FRAME_NUM 10000
@@ -95,7 +97,7 @@ extern "C"
 //最多存储的监测输入输出状态的信息
 #define MAX_IOCHECK_NUM 10000
 //URL长度
-#define MAX_URL_LENGTH 2000
+#define MAX_URL_LENGTH 500
 
 
 #include <direct.h>

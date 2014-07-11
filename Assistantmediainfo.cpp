@@ -47,7 +47,7 @@ END_MESSAGE_MAP()
 // Assistantmediainfo 消息处理程序
 BOOL Assistantmediainfo::OnInitDialog(){
 	CDialogEx::OnInitDialog();
-	maindlg->m_inputurl.GetWindowText(fileurl,MAX_URL_LENGTH);
+	maindlg->m_inputurl.GetWindowText(fileurl);
 	mediainfo();
 	m_mediainfodisplay.SetWindowText(To_Display);
 	return TRUE;
@@ -57,7 +57,7 @@ BOOL Assistantmediainfo::mediainfo()
 {
 	//Information about MediaInfo
 	MediaInfo MI;
-	To_Display.Format("");
+	To_Display.Format(_T(""));
 	MI.Option(__T("Info_Version"), __T("0.7.13;MediaInfoDLL_Example_MSVC;0.7.13")).c_str();
 
 	//To_Display += __T("\r\n\r\nInfo_Parameters\r\n");
@@ -65,7 +65,7 @@ BOOL Assistantmediainfo::mediainfo()
 
 	//To_Display += __T("\r\n\r\nInfo_Codecs\r\n");
 	//To_Display += MI.Option(__T("Info_Codecs")).c_str();
-	MI.Open(fileurl);
+	MI.Open(fileurl.GetBuffer());
 
 	MI.Option(__T("Complete"));
 	To_Display += MI.Inform().c_str();

@@ -63,75 +63,75 @@ BOOL Optplayer::OnInitDialog(){
 	m_optplayergrid.GetHeaderCtrl().SetItem(0, &item); 
 
 	resloader.LoadString(IDS_OPTPLAYER_ENABLESIZE);
-	enable_size=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	enable_size=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_X);
-	x=new CMFCPropertyGridProperty(resloader,(_variant_t)640, "");
+	x=new CMFCPropertyGridProperty(resloader,(_variant_t)640, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_Y);
-	y=new CMFCPropertyGridProperty(resloader,(_variant_t)480, "");
+	y=new CMFCPropertyGridProperty(resloader,(_variant_t)480, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_FS);
-	fs=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	fs=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_AN);
-	an=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	an=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_VN);
-	vn=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	vn=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_ENABLESS);
-	enable_ss=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	enable_ss=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_SS);
-	ss=new CMFCPropertyGridProperty(resloader,(_variant_t)20, "");
+	ss=new CMFCPropertyGridProperty(resloader,(_variant_t)20, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_ENABLET);
-	enable_t=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	enable_t=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_T);
-	t=new CMFCPropertyGridProperty(resloader,(_variant_t) 20, "");
+	t=new CMFCPropertyGridProperty(resloader,(_variant_t) 20, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_BYTES);
-	bytes=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	bytes=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_NODISP);
-	nodisp=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	nodisp=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_ENABLEF);
-	enable_f=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	enable_f=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_F);
-	f=new CMFCPropertyGridProperty(resloader,(_variant_t)1, "");
+	f=new CMFCPropertyGridProperty(resloader,(_variant_t)1, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_ENABLEPIXFMT);
-	enable_pix_fmt=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	enable_pix_fmt=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_PIXFMT);
-	pix_fmt=new CMFCPropertyGridProperty(resloader,(_variant_t)1, "");
+	pix_fmt=new CMFCPropertyGridProperty(resloader,(_variant_t)1, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_ENABLEIDCT);
-	enable_idct=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	enable_idct=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_IDCT);
-	idct=new CMFCPropertyGridProperty(resloader,(_variant_t)1, "");
+	idct=new CMFCPropertyGridProperty(resloader,(_variant_t)1, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_ENABLEEC);
-	enable_ec=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	enable_ec=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_EC);
-	ec=new CMFCPropertyGridProperty(resloader,(_variant_t)1, "");
+	ec=new CMFCPropertyGridProperty(resloader,(_variant_t)1, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_ENABLESYNC);
-	enable_sync=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	enable_sync=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_SYNC);
-	sync=new CMFCPropertyGridProperty(resloader,(_variant_t)"ext", "");
+	sync=new CMFCPropertyGridProperty(resloader,(_variant_t)"ext", _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_AUTOEXIT);
-	autoexit=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	autoexit=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_ENABLELOOP);
-	enable_loop=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	enable_loop=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_LOOP);
-	loop=new CMFCPropertyGridProperty(resloader,(_variant_t)10, "");
+	loop=new CMFCPropertyGridProperty(resloader,(_variant_t)10, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_FRAMEDROP);
-	framedrop=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	framedrop=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_INFBUF);
-	infbuf=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	infbuf=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_ENABLEWINTITLE);
-	enable_window_title=new CMFCPropertyGridProperty(resloader,(_variant_t)false, "");
+	enable_window_title=new CMFCPropertyGridProperty(resloader,(_variant_t)false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_WINTITLE);
-	window_title=new CMFCPropertyGridProperty(resloader,(_variant_t) "Custom", "");
+	window_title=new CMFCPropertyGridProperty(resloader,(_variant_t) "Custom", _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_ENABLERDFTSPEED);
-	enable_rdftspeed=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	enable_rdftspeed=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_RDFTSPEED);
-	rdftspeed=new CMFCPropertyGridProperty(resloader,(_variant_t) 100, "");
+	rdftspeed=new CMFCPropertyGridProperty(resloader,(_variant_t) 100, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_ENABLESHOWMODE);
-	enable_showmode=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	enable_showmode=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_SHOWMODE);
-	showmode=new CMFCPropertyGridProperty(resloader,(_variant_t)"video", "");
+	showmode=new CMFCPropertyGridProperty(resloader,(_variant_t)"video", _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_ENABLECODEC);
-	enable_codec=new CMFCPropertyGridProperty(resloader,(_variant_t) false, "");
+	enable_codec=new CMFCPropertyGridProperty(resloader,(_variant_t) false, _T(""));
 	resloader.LoadString(IDS_OPTPLAYER_CODEC);
-	codec=new CMFCPropertyGridProperty(resloader,(_variant_t) 1, "");
+	codec=new CMFCPropertyGridProperty(resloader,(_variant_t) 1, _T(""));
 	
 	m_optplayergrid.AddProperty(enable_size);
 	x->EnableSpinControl(TRUE,0,5000);
@@ -165,9 +165,9 @@ BOOL Optplayer::OnInitDialog(){
 	ec->EnableSpinControl(TRUE,0,300);
 	m_optplayergrid.AddProperty(ec);
 	m_optplayergrid.AddProperty(enable_sync);
-	sync->AddOption("audio");
-	sync->AddOption("video");
-	sync->AddOption("ext");
+	sync->AddOption(_T("audio"));
+	sync->AddOption(_T("video"));
+	sync->AddOption(_T("ext"));
 	m_optplayergrid.AddProperty(sync);
 	m_optplayergrid.AddProperty(autoexit);
 	
@@ -183,9 +183,9 @@ BOOL Optplayer::OnInitDialog(){
 	rdftspeed->EnableSpinControl(TRUE,0,300);
 	m_optplayergrid.AddProperty(rdftspeed);
 	m_optplayergrid.AddProperty(enable_showmode);
-	showmode->AddOption("video");
-	showmode->AddOption("waves");
-	showmode->AddOption("rdft");
+	showmode->AddOption(_T("video"));
+	showmode->AddOption(_T("waves"));
+	showmode->AddOption(_T("rdft"));
 	m_optplayergrid.AddProperty(showmode);
 	m_optplayergrid.AddProperty(enable_codec);
 	codec->EnableSpinControl(TRUE,0,300);
@@ -277,123 +277,123 @@ char** Optplayer::generate_opt_argv(){
 	opt_argv.clear();
 	CString temp1;
 	//参数字符串中有文件名和程序名-----------------
-	temp1.Format("dummy.exe");
+	temp1.Format(_T("dummy.exe"));
 	opt_argv.push_back(temp1);
-	temp1.Format("dummy.avi");
+	temp1.Format(_T("dummy.avi"));
 	opt_argv.push_back(temp1);
 	//------------------------
 	if(enable_size->GetValue()==(_variant_t)true){
-		temp1.Format("-x");
+		temp1.Format(_T("-x"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(x->GetValue());
 		opt_argv.push_back(temp1);//将_variant_t类型变量vcount通过函数-bstr-（）转换为cstring类型
-		temp1.Format("-y");
+		temp1.Format(_T("-y"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(y->GetValue());
 		opt_argv.push_back(temp1);
 	};
 	if(fs->GetValue()==(_variant_t)true){
-		temp1.Format("-fs");
+		temp1.Format(_T("-fs"));
 		opt_argv.push_back(temp1);
 	}
 	if(an->GetValue()==(_variant_t)true){
-		temp1.Format("-an");
+		temp1.Format(_T("-an"));
 		opt_argv.push_back(temp1);
 	}
 	if(vn->GetValue()==(_variant_t)true){
-		temp1.Format("-vn");
+		temp1.Format(_T("-vn"));
 		opt_argv.push_back(temp1);
 	}
 	if(enable_ss->GetValue()==(_variant_t)true){
-		temp1.Format("-ss");
+		temp1.Format(_T("-ss"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(ss->GetValue());
 		opt_argv.push_back(temp1);
 	}
 	if(enable_t->GetValue()==(_variant_t)true){
-		temp1.Format("-t");
+		temp1.Format(_T("-t"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(t->GetValue());
 		opt_argv.push_back(temp1);
 	}
 
 	if(bytes->GetValue()==(_variant_t)true){
-		temp1.Format("-bytes");
+		temp1.Format(_T("-bytes"));
 		opt_argv.push_back(temp1);
 	}
 	if(nodisp->GetValue()==(_variant_t)true){
-		temp1.Format("-nodisp");
+		temp1.Format(_T("-nodisp"));
 		opt_argv.push_back(temp1);
 	}
 	if(enable_f->GetValue()==(_variant_t)true){
-		temp1.Format("-f");
+		temp1.Format(_T("-f"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(f->GetValue());
 		opt_argv.push_back(temp1);
 	}
 	if(enable_pix_fmt->GetValue()==(_variant_t)true){
-		temp1.Format("-pix_fmt");
+		temp1.Format(_T("-pix_fmt"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(pix_fmt->GetValue());
 		opt_argv.push_back(temp1);
 	}
 	if(enable_idct->GetValue()==(_variant_t)true){
-		temp1.Format("-idct");
+		temp1.Format(_T("-idct"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(idct->GetValue());
 		opt_argv.push_back(temp1);
 	}
 	if(enable_ec->GetValue()==(_variant_t)true){
-		temp1.Format("-ec");
+		temp1.Format(_T("-ec"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(ec->GetValue());
 		opt_argv.push_back(temp1);
 	}
 	if(enable_sync->GetValue()==(_variant_t)true){
-		temp1.Format("-sync");
+		temp1.Format(_T("-sync"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(sync->GetValue());
 		opt_argv.push_back(temp1);
 	}
 	if(autoexit->GetValue()==(_variant_t)true){
-		temp1.Format("-autoexit");
+		temp1.Format(_T("-autoexit"));
 		opt_argv.push_back(temp1);
 	}
 
 	if(enable_loop->GetValue()==(_variant_t)true){
-		temp1.Format("-loop");
+		temp1.Format(_T("-loop"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(loop->GetValue());
 		opt_argv.push_back(temp1);
 	}
 	if(framedrop->GetValue()==(_variant_t)true){
-		temp1.Format("-framedrop");
+		temp1.Format(_T("-framedrop"));
 		opt_argv.push_back(temp1);
 	}
 	if(infbuf->GetValue()==(_variant_t)true){
-		temp1.Format("-infbuf");
+		temp1.Format(_T("-infbuf"));
 		opt_argv.push_back(temp1);
 	}
 	if(enable_window_title->GetValue()==(_variant_t)true){
-		temp1.Format("-window_title");
+		temp1.Format(_T("-window_title"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(window_title->GetValue());
 		opt_argv.push_back(temp1);
 	}
 	if(enable_rdftspeed->GetValue()==(_variant_t)true){
-		temp1.Format("-rdftspeed");
+		temp1.Format(_T("-rdftspeed"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(rdftspeed->GetValue());
 		opt_argv.push_back(temp1);
 	}
 	if(enable_showmode->GetValue()==(_variant_t)true){
-		temp1.Format("-showmode");
+		temp1.Format(_T("-showmode"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(showmode->GetValue());
 		opt_argv.push_back(temp1);
 	}
 	if(enable_codec->GetValue()==(_variant_t)true){
-		temp1.Format("-codec");
+		temp1.Format(_T("-codec"));
 		opt_argv.push_back(temp1);
 		temp1=(char *)_bstr_t(codec->GetValue());
 		opt_argv.push_back(temp1);

@@ -80,11 +80,16 @@ BOOL Rawanalysis::OnInitDialog(){
 	//
 	m_rawanalysisoutpicfolderurl.EnableFolderBrowseButton();
 	
-	char realpath[MAX_URL_LENGTH]={0};
+	TCHAR realpath[MAX_URL_LENGTH]={0};
 	//生成文件路径
-	_getcwd(realpath,MAX_URL_LENGTH);
-	strcat(realpath,"\\rawanalysispic");
-	m_rawanalysisoutpicfolderurl.SetWindowText(realpath);
+	GetCurrentDirectory(MAX_URL_LENGTH,realpath);
+	CString realpath1(realpath);
+	realpath1.Append(_T("\\rawanalysispic"));
+
+	m_rawanalysisoutpicfolderurl.SetWindowText(realpath1);
+
+
+	
 
 	m_rawanalysisoutpicfolderurl.EnableWindow(FALSE);
 	//----------------------
@@ -93,7 +98,7 @@ BOOL Rawanalysis::OnInitDialog(){
 	m_rawanalysiscontourthres=60;
 	m_rawanalysiscannythres1=50;
 	m_rawanalysiscannythres2=150;
-	m_rawanalysisfacexmlurl.Format("haarcascade_frontalface_alt2.xml");
+	m_rawanalysisfacexmlurl.Format(_T("haarcascade_frontalface_alt2.xml"));
 	UpdateData(FALSE);
 	//----------------------
 	return TRUE;
@@ -121,10 +126,10 @@ void Rawanalysis::OnBnClickedRawanalysisOpen()
 	}
 
 	//-------
-	CString strFilePath; 
+
 	UpdateData(TRUE);
 
-	strcpy(fileurl,strFilePath);
+
 	switch(m_rawanalysismethod){
 	case 0:
 		Color_Histogram();
@@ -308,15 +313,22 @@ int Rawanalysis::DFT()
 	cvShowImage("im", image_Im);
 
 	if(m_rawanalysisoutpicfolder.GetCheck()==TRUE){
-		pic_name.Format("pic_%d.jpg",frame_index);
-		pic_name1.Format("pic_%d_dft_magnitude.jpg",frame_index);
-		pic_name2.Format("pic_%d_dft_im.jpg",frame_index);
-		folder_url.AppendFormat("\\%s",pic_name);
-		folder_url1.AppendFormat("\\%s",pic_name1);
-		folder_url2.AppendFormat("\\%s",pic_name2);
+		pic_name.Format(_T("pic_%d.jpg"),frame_index);
+		pic_name1.Format(_T("pic_%d_dft_magnitude.jpg"),frame_index);
+		pic_name2.Format(_T("pic_%d_dft_im.jpg"),frame_index);
+		folder_url.AppendFormat(_T("\\%s"),pic_name);
+		folder_url1.AppendFormat(_T("\\%s"),pic_name1);
+		folder_url2.AppendFormat(_T("\\%s"),pic_name2);
+#ifdef _UNICODE
+		USES_CONVERSION;
+		cvSaveImage(W2A(folder_url),im);
+		cvSaveImage(W2A(folder_url1),image_Re);
+		cvSaveImage(W2A(folder_url2),image_Im);
+#else
 		cvSaveImage(folder_url,im);
 		cvSaveImage(folder_url1,image_Re);
 		cvSaveImage(folder_url2,image_Im);
+#endif
 	}
 
 
@@ -401,12 +413,18 @@ int Rawanalysis::Color_Histogram()
 	cvShowImage( "H-S Histogram", hist_img );
 
 	if(m_rawanalysisoutpicfolder.GetCheck()==TRUE){
-		pic_name.Format("pic_%d.jpg",frame_index);
-		pic_name1.Format("pic_%d_histogram.jpg",frame_index);
-		folder_url.AppendFormat("\\%s",pic_name);
-		folder_url1.AppendFormat("\\%s",pic_name1);
+		pic_name.Format(_T("pic_%d.jpg"),frame_index);
+		pic_name1.Format(_T("pic_%d_histogram.jpg"),frame_index);
+		folder_url.AppendFormat(_T("\\%s"),pic_name);
+		folder_url1.AppendFormat(_T("\\%s"),pic_name1);
+#ifdef _UNICODE
+		USES_CONVERSION;
+		cvSaveImage(W2A(folder_url),src);
+		cvSaveImage(W2A(folder_url1),hist_img);
+#else
 		cvSaveImage(folder_url,src);
 		cvSaveImage(folder_url1,hist_img);
+#endif
 	}
 
 
@@ -449,12 +467,18 @@ int Rawanalysis::Canny(){
 
 	//保存
 	if(m_rawanalysisoutpicfolder.GetCheck()==TRUE){
-		pic_name.Format("pic_%d.jpg",frame_index);
-		pic_name1.Format("pic_%d_canny.jpg",frame_index);
-		folder_url.AppendFormat("\\%s",pic_name);
-		folder_url1.AppendFormat("\\%s",pic_name1);
+		pic_name.Format(_T("pic_%d.jpg"),frame_index);
+		pic_name1.Format(_T("pic_%d_canny.jpg"),frame_index);
+		folder_url.AppendFormat(_T("\\%s"),pic_name);
+		folder_url1.AppendFormat(_T("\\%s"),pic_name1);
+#ifdef _UNICODE
+		USES_CONVERSION;
+		cvSaveImage(W2A(folder_url),pImg);
+		cvSaveImage(W2A(folder_url1),pCannyImg);
+#else
 		cvSaveImage(folder_url,pImg);
 		cvSaveImage(folder_url1,pCannyImg);
+#endif
 	}
 	
 	cvWaitKey(0); //等待按键
@@ -476,13 +500,17 @@ int Rawanalysis::face_detect()
 	CString folder_url,pic_name;
 	m_rawanalysisoutpicfolderurl.GetWindowText(folder_url);
     //opencv装好后haarcascade_frontalface_alt2.xml的路径,
-    //也可以把这个文件拷到你的工程文件夹下然后不用写路径名cascade_name= "haarcascade_frontalface_alt2.xml";  
-    //或者cascade_name ="C:\\Program Files\\OpenCV\\data\\haarcascades\\haarcascade_frontalface_alt2.xml"
-    cascade = (CvHaarClassifierCascade*)cvLoad(m_rawanalysisfacexmlurl, 0, 0, 0 );
+#ifdef _UNICODE
+	USES_CONVERSION;
+	cascade = (CvHaarClassifierCascade*)cvLoad(W2A(m_rawanalysisfacexmlurl), 0, 0, 0 );
+#else
+	cascade = (CvHaarClassifierCascade*)cvLoad(m_rawanalysisfacexmlurl, 0, 0, 0 );
+#endif
+    
  
     if( !cascade )
     {
-        AfxMessageBox("错误:无法加载classifier cascade");
+        AfxMessageBox(_T("Error: Can't load classifier cascade"));
         return -1;
     }
     storage = cvCreateMemStorage(0);
@@ -504,9 +532,14 @@ int Rawanalysis::face_detect()
 
 		//保存
 		if(m_rawanalysisoutpicfolder.GetCheck()==TRUE){
-			pic_name.Format("pic_%d_facedetect.jpg",frame_index);
-			folder_url.AppendFormat("\\%s",pic_name);
+			pic_name.Format(_T("pic_%d_facedetect.jpg"),frame_index);
+			folder_url.AppendFormat(_T("\\%s"),pic_name);
+#ifdef _UNICODE
+			USES_CONVERSION;
+			cvSaveImage(W2A(folder_url),image);
+#else
 			cvSaveImage(folder_url,image);
+#endif
 		}
 
         cvWaitKey(0);
@@ -637,12 +670,18 @@ int Rawanalysis::Contour()
 
 	//保存
 	if(m_rawanalysisoutpicfolder.GetCheck()==TRUE){
-		pic_name.Format("pic_%d.jpg",frame_index);
-		pic_name1.Format("pic_%d_contour.jpg",frame_index);
-		folder_url.AppendFormat("\\%s",pic_name);
-		folder_url1.AppendFormat("\\%s",pic_name1);
+		pic_name.Format(_T("pic_%d.jpg"),frame_index);
+		pic_name1.Format(_T("pic_%d_contour.jpg"),frame_index);
+		folder_url.AppendFormat(_T("\\%s"),pic_name);
+		folder_url1.AppendFormat(_T("\\%s"),pic_name1);
+#ifdef _UNICODE
+		USES_CONVERSION;
+		cvSaveImage(W2A(folder_url),pImg);
+		cvSaveImage(W2A(folder_url1),pContourImg);
+#else
 		cvSaveImage(folder_url,pImg);
 		cvSaveImage(folder_url1,pContourImg);
+#endif
 	}
 
 	cvWaitKey(0);
@@ -773,7 +812,7 @@ void Rawanalysis::SystemClear(){
 	m_rawanalysiscontourthres=60;
 	m_rawanalysiscannythres1=50;
 	m_rawanalysiscannythres2=150;
-	m_rawanalysisfacexmlurl.Format("haarcascade_frontalface_alt2.xml");
+	m_rawanalysisfacexmlurl.Format(_T("haarcascade_frontalface_alt2.xml"));
 	UpdateData(FALSE);
 }
 
@@ -812,6 +851,11 @@ int Rawanalysis::show_color_component(int nameid){
 	cvMerge(0,g_comp,0,0,img_g);
 	cvMerge(0,0,r_comp,0,img_r);
 
+#ifdef _UNICODE
+	USES_CONVERSION;
+#endif
+
+
 	CString folder_url,pic_name;
 	m_rawanalysisoutpicfolderurl.GetWindowText(folder_url);
 
@@ -820,9 +864,14 @@ int Rawanalysis::show_color_component(int nameid){
 		cvNamedWindow( "Image", 1 );//创建窗口
 		cvShowImage( "Image", img_r );//显示图像
 		if(m_rawanalysisoutpicfolder.GetCheck()==TRUE){
-			pic_name.Format("pic_%d_r.jpg",frame_index);
-			folder_url.AppendFormat("\\%s",pic_name);
+			pic_name.Format(_T("pic_%d_r.jpg"),frame_index);
+			folder_url.AppendFormat(_T("\\%s"),pic_name);
+#ifdef _UNICODE
+			cvSaveImage(W2A(folder_url),img_r);
+#else
 			cvSaveImage(folder_url,img_r);
+#endif
+
 		}
 		break;
 					 }
@@ -830,9 +879,13 @@ int Rawanalysis::show_color_component(int nameid){
 		cvNamedWindow( "Image", 1 );//创建窗口
 		cvShowImage( "Image", img_g );//显示图像
 		if(m_rawanalysisoutpicfolder.GetCheck()==TRUE){
-			pic_name.Format("pic_%d_g.jpg",frame_index);
-			folder_url.AppendFormat("\\%s",pic_name);
+			pic_name.Format(_T("pic_%d_g.jpg"),frame_index);
+			folder_url.AppendFormat(_T("\\%s"),pic_name);
+#ifdef _UNICODE
+			cvSaveImage(W2A(folder_url),img_g);
+#else
 			cvSaveImage(folder_url,img_g);
+#endif
 		}
 		break;
 					 }
@@ -840,9 +893,13 @@ int Rawanalysis::show_color_component(int nameid){
 		cvNamedWindow( "Image", 1 );//创建窗口
 		cvShowImage( "Image", img_b );//显示图像
 		if(m_rawanalysisoutpicfolder.GetCheck()==TRUE){
-			pic_name.Format("pic_%d_b.jpg",frame_index);
-			folder_url.AppendFormat("\\%s",pic_name);
+			pic_name.Format(_T("pic_%d_b.jpg"),frame_index);
+			folder_url.AppendFormat(_T("\\%s"),pic_name);
+#ifdef _UNICODE
+			cvSaveImage(W2A(folder_url),img_b);
+#else
 			cvSaveImage(folder_url,img_b);
+#endif
 		}
 		break;
 					 }
@@ -850,9 +907,13 @@ int Rawanalysis::show_color_component(int nameid){
 		cvNamedWindow( "Image", 1 );//创建窗口
 		cvShowImage( "Image", y_comp );//显示图像
 		if(m_rawanalysisoutpicfolder.GetCheck()==TRUE){
-			pic_name.Format("pic_%d_y.jpg",frame_index);
-			folder_url.AppendFormat("\\%s",pic_name);
+			pic_name.Format(_T("pic_%d_y.jpg"),frame_index);
+			folder_url.AppendFormat(_T("\\%s"),pic_name);
+#ifdef _UNICODE
+			cvSaveImage(W2A(folder_url),y_comp);
+#else
 			cvSaveImage(folder_url,y_comp);
+#endif
 		}
 		break;
 					 }
@@ -860,9 +921,13 @@ int Rawanalysis::show_color_component(int nameid){
 		cvNamedWindow( "Image", 1 );//创建窗口
 		cvShowImage( "Image", u_comp );//显示图像
 		if(m_rawanalysisoutpicfolder.GetCheck()==TRUE){
-			pic_name.Format("pic_%d_u.jpg",frame_index);
-			folder_url.AppendFormat("\\%s",pic_name);
+			pic_name.Format(_T("pic_%d_u.jpg"),frame_index);
+			folder_url.AppendFormat(_T("\\%s"),pic_name);
+#ifdef _UNICODE
+			cvSaveImage(W2A(folder_url),u_comp);
+#else
 			cvSaveImage(folder_url,u_comp);
+#endif
 		}
 		break;
 					 }
@@ -870,9 +935,13 @@ int Rawanalysis::show_color_component(int nameid){
 		cvNamedWindow( "Image", 1 );//创建窗口
 		cvShowImage( "Image", v_comp );//显示图像
 		if(m_rawanalysisoutpicfolder.GetCheck()==TRUE){
-			pic_name.Format("pic_%d_v.jpg",frame_index);
-			folder_url.AppendFormat("\\%s",pic_name);
+			pic_name.Format(_T("pic_%d_v.jpg"),frame_index);
+			folder_url.AppendFormat(_T("\\%s"),pic_name);
+#ifdef _UNICODE
+			cvSaveImage(W2A(folder_url),v_comp);
+#else
 			cvSaveImage(folder_url,v_comp);
+#endif
 		}
 		break;
 					 }

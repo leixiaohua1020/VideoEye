@@ -89,8 +89,7 @@ public:
 	void detect_and_draw( IplImage* img );
 	int face_detect();
 
-	char fileurl_v[MAX_URL_LENGTH];
-	char fileurl[MAX_URL_LENGTH];
+
 	int m_rawanalysismethod;
 	void SystemClear();
 	afx_msg void OnBnClickedCancel();

@@ -37,7 +37,7 @@ protected:
 	//自己添加的
 	virtual BOOL OnInitDialog();
 	BOOL mediainfo();
-	char fileurl[MAX_URL_LENGTH];
+	CString fileurl;
 	//要显示的信息
 	CString To_Display;
 	DECLARE_MESSAGE_MAP()

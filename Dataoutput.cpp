@@ -84,21 +84,23 @@ BOOL Dataoutput::OnInitDialog(){
 	m_outcheckmvh264.SetCheck(0);
 	m_outcheckmaaac.SetCheck(0);
 	//-------------
-	char realpath[MAX_URL_LENGTH]={0};
+	TCHAR realpath[MAX_URL_LENGTH]={0};   
 	//生成文件路径
-	_getcwd(realpath,MAX_URL_LENGTH);
+	GetCurrentDirectory(MAX_URL_LENGTH,realpath);
 	CString outdirma,outdirmv,outdirmo,outdirryuv,outdirry,outdirru,outdirrv,outdirrpcm,outdirmvh264,outdirmaaac;
 	//-----------------
-	outdirma.Format("%s\\output",realpath);
-	outdirmv.Format("%s\\output",realpath);
-	outdirmo.Format("%s\\output",realpath);
-	outdirryuv.Format("%s\\output.yuv",realpath);
-	outdirry.Format("%s\\output.y",realpath);
-	outdirru.Format("%s\\output.u",realpath);
-	outdirrv.Format("%s\\output.v",realpath);
-	outdirrpcm.Format("%s\\output.pcm",realpath);
-	outdirmvh264.Format("%s\\output.264",realpath);
-	outdirmaaac.Format("%s\\output.aac",realpath);
+
+	outdirma.Format(_T("%s\\output"),realpath);
+	outdirmv.Format(_T("%s\\output"),realpath);
+	outdirmo.Format(_T("%s\\output"),realpath);
+	outdirryuv.Format(_T("%s\\output.yuv"),realpath);
+	outdirry.Format(_T("%s\\output.y"),realpath);
+	outdirru.Format(_T("%s\\output.u"),realpath);
+	outdirrv.Format(_T("%s\\output.v"),realpath);
+	outdirrpcm.Format(_T("%s\\output.pcm"),realpath);
+	outdirmvh264.Format(_T("%s\\output.264"),realpath);
+	outdirmaaac.Format(_T("%s\\output.aac"),realpath);
+
 
 	m_outdirma.SetWindowText(outdirma);
 	m_outdirmv.SetWindowText(outdirmv);
@@ -119,7 +121,8 @@ void Dataoutput::OnBnClickedOutDirMVD()
 	CFileDialog dlg(FALSE);///TRUE为OPEN对话框，FALSE为SAVE AS对话框 
 	if(dlg.DoModal()==IDOK) 
 		FilePathName=dlg.GetPathName();
-	m_outdirmv.SetWindowTextA(FilePathName);
+	if(FilePathName.IsEmpty()==FALSE)
+		m_outdirmv.SetWindowText(FilePathName);
 }
 
 
@@ -129,62 +132,68 @@ void Dataoutput::OnBnClickedOutDirMAD()
 	CFileDialog dlg(FALSE);///TRUE为OPEN对话框，FALSE为SAVE AS对话框 
 	if(dlg.DoModal()==IDOK) 
 		FilePathName=dlg.GetPathName();
-	m_outdirma.SetWindowTextA(FilePathName);
+	if(FilePathName.IsEmpty()==FALSE)
+		m_outdirma.SetWindowText(FilePathName);
 }
 
 
 void Dataoutput::OnBnClickedOutDirMOD()
 {
 	CString FilePathName;
-	LPCTSTR lpszfilter="YUV非压缩域 (*.yuv;*.y;*.u;*.v)|*.yuv;*.y;*.u;*.v|All Files (*.*)|*.*||";
-	CFileDialog dlg(FALSE,"yuv","output",NULL,lpszfilter);
+	LPCTSTR lpszfilter=_T("YUV (*.yuv;*.y;*.u;*.v)|*.yuv;*.y;*.u;*.v|All Files (*.*)|*.*||");
+	CFileDialog dlg(FALSE,_T("yuv"),_T("output"),NULL,lpszfilter);
 	if(dlg.DoModal()==IDOK) 
 		FilePathName=dlg.GetPathName();
-	m_outdirmo.SetWindowTextA(FilePathName);
+	if(FilePathName.IsEmpty()==FALSE)
+		m_outdirmo.SetWindowText(FilePathName);
 }
 
 
 void Dataoutput::OnBnClickedOutDirRYuvD()
 {
 	CString FilePathName;
-	LPCTSTR lpszfilter="YUV非压缩域 (*.yuv;*.y;*.u;*.v)|*.yuv;*.y;*.u;*.v|All Files (*.*)|*.*||";
-	CFileDialog dlg(FALSE,"yuv","output",NULL,lpszfilter);
+	LPCTSTR lpszfilter=_T("YUV (*.yuv;*.y;*.u;*.v)|*.yuv;*.y;*.u;*.v|All Files (*.*)|*.*||");
+	CFileDialog dlg(FALSE,_T("yuv"),_T("output"),NULL,lpszfilter);
 	if(dlg.DoModal()==IDOK) 
 		FilePathName=dlg.GetPathName();
-	m_outdirryuv.SetWindowTextA(FilePathName);
+	if(FilePathName.IsEmpty()==FALSE)
+		m_outdirryuv.SetWindowText(FilePathName);
 }
 
 
 void Dataoutput::OnBnClickedOutDirRYD()
 {
 	CString FilePathName;
-	LPCTSTR lpszfilter="YUV非压缩域 (*.yuv;*.y;*.u;*.v)|*.yuv;*.y;*.u;*.v|All Files (*.*)|*.*||";
-	CFileDialog dlg(FALSE,"y","output",NULL,lpszfilter);
+	LPCTSTR lpszfilter=_T("YUV (*.yuv;*.y;*.u;*.v)|*.yuv;*.y;*.u;*.v|All Files (*.*)|*.*||");
+	CFileDialog dlg(FALSE,_T("y"),_T("output"),NULL,lpszfilter);
 	if(dlg.DoModal()==IDOK) 
 		FilePathName=dlg.GetPathName();
-	m_outdirry.SetWindowTextA(FilePathName);
+	if(FilePathName.IsEmpty()==FALSE)
+		m_outdirry.SetWindowText(FilePathName);
 }
 
 
 void Dataoutput::OnBnClickedOutDirRUD()
 {
 	CString FilePathName;
-	LPCTSTR lpszfilter="YUV非压缩域 (*.yuv;*.y;*.u;*.v)|*.yuv;*.y;*.u;*.v|All Files (*.*)|*.*||";
-	CFileDialog dlg(FALSE,"u","output",NULL,lpszfilter);
+	LPCTSTR lpszfilter=_T("YUV (*.yuv;*.y;*.u;*.v)|*.yuv;*.y;*.u;*.v|All Files (*.*)|*.*||");
+	CFileDialog dlg(FALSE,_T("u"),_T("output"),NULL,lpszfilter);
 	if(dlg.DoModal()==IDOK) 
 		FilePathName=dlg.GetPathName();
-	m_outdirru.SetWindowTextA(FilePathName);
+	if(FilePathName.IsEmpty()==FALSE)
+		m_outdirru.SetWindowText(FilePathName);
 }
 
 
 void Dataoutput::OnBnClickedOutDirRVD()
 {
 	CString FilePathName;
-	LPCTSTR lpszfilter="YUV非压缩域 (*.yuv;*.y;*.u;*.v)|*.yuv;*.y;*.u;*.v|All Files (*.*)|*.*||";
-	CFileDialog dlg(FALSE,"v","output",NULL,lpszfilter);
+	LPCTSTR lpszfilter=_T("YUV (*.yuv;*.y;*.u;*.v)|*.yuv;*.y;*.u;*.v|All Files (*.*)|*.*||");
+	CFileDialog dlg(FALSE,_T("v"),_T("output"),NULL,lpszfilter);
 	if(dlg.DoModal()==IDOK) 
 		FilePathName=dlg.GetPathName();
-	m_outdirrv.SetWindowTextA(FilePathName);
+	if(FilePathName.IsEmpty()==FALSE)
+		m_outdirrv.SetWindowText(FilePathName);
 }
 
 
@@ -197,31 +206,34 @@ void Dataoutput::OnBnClickedOutCheckMV()
 void Dataoutput::OnBnClickedOutDirRPcmD()
 {
 	CString FilePathName;
-	LPCTSTR lpszfilter="PCM非压缩域 (*.pcm)|*.pcm|All Files (*.*)|*.*||";
-	CFileDialog dlg(FALSE,"pcm","output",NULL,lpszfilter);
+	LPCTSTR lpszfilter=_T("PCM (*.pcm)|*.pcm|All Files (*.*)|*.*||");
+	CFileDialog dlg(FALSE,_T("pcm"),_T("output"),NULL,lpszfilter);
 	if(dlg.DoModal()==IDOK) 
 		FilePathName=dlg.GetPathName();
-	m_outdirrpcm.SetWindowTextA(FilePathName);
+	if(FilePathName.IsEmpty()==FALSE)
+		m_outdirrpcm.SetWindowText(FilePathName);
 }
 
 
 void Dataoutput::OnBnClickedOutDirMVH264D()
 {
 	CString FilePathName;
-	LPCTSTR lpszfilter="264码流文件 (*.264)|*.264|All Files (*.*)|*.*||";
-	CFileDialog dlg(FALSE,"264","output",NULL,lpszfilter);
+	LPCTSTR lpszfilter=_T("H.264 (*.264)|*.264|All Files (*.*)|*.*||");
+	CFileDialog dlg(FALSE,_T("264"),_T("output"),NULL,lpszfilter);
 	if(dlg.DoModal()==IDOK) 
 		FilePathName=dlg.GetPathName();
-	m_outdirmvh264.SetWindowTextA(FilePathName);
+	if(FilePathName.IsEmpty()==FALSE)
+		m_outdirmvh264.SetWindowText(FilePathName);
 }
 
 
 void Dataoutput::OnBnClickedOutDirMAAacD()
 {
 	CString FilePathName;
-	LPCTSTR lpszfilter="AAC码流文件 (*.aac)|*.aac|All Files (*.*)|*.*||";
-	CFileDialog dlg(FALSE,"aac","output",NULL,lpszfilter);
+	LPCTSTR lpszfilter=_T("AAC (*.aac)|*.aac|All Files (*.*)|*.*||");
+	CFileDialog dlg(FALSE,_T("aac"),_T("output"),NULL,lpszfilter);
 	if(dlg.DoModal()==IDOK) 
 		FilePathName=dlg.GetPathName();
-	m_outdirmaaac.SetWindowTextA(FilePathName);
+	if(FilePathName.IsEmpty()==FALSE)
+		m_outdirmaaac.SetWindowText(FilePathName);
 }
