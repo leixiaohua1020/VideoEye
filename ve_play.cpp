@@ -300,6 +300,8 @@ static int rdftspeed = 20;
 static char *vfilters = NULL;
 #endif
 
+
+
 /* current context */
 static int is_full_screen;
 static int64_t audio_callback_time;
@@ -318,6 +320,10 @@ int dataoutput_h264_ft;
 #define VE_SEEK_BAR_EVENT    (SDL_USEREVENT + 4)
 int seek_bar_pos;
 
+
+//是否拉伸-------------------------
+#define VE_STRETCH_EVENT (SDL_USEREVENT + 5)
+int is_stretch=1;
 //--------------------------------
 //专门设置的标记，在程序将要退出的时候会置1
 static int exit_remark=0;
@@ -1142,9 +1148,11 @@ static void video_image_display(VideoState *is)
 			}
 		}
 		//计算显示窗的位置（两种方法）
-		//calculate_display_rect(&rect, is->xleft, is->ytop, is->width, is->height, vp);
-		calculate_display_rect_f(&rect, is->xleft, is->ytop, is->width, is->height, vp);
-
+		if(is_stretch==0){
+			calculate_display_rect(&rect, is->xleft, is->ytop, is->width, is->height, vp);
+		}else if(is_stretch==1){
+			calculate_display_rect_f(&rect, is->xleft, is->ytop, is->width, is->height, vp);
+		}
 		SDL_DisplayYUVOverlay(vp->bmp, &rect);
 	}
 }
@@ -3573,6 +3581,13 @@ void ve_seek_bar(int pos){
 	SDL_PushEvent(&event);
 }
 
+void ve_stretch(int stretch){
+	SDL_Event event;
+	event.type = VE_STRETCH_EVENT;
+	SDL_PushEvent(&event);
+	is_stretch=stretch;
+}
+
 
 
 static void toggle_audio_display(VideoState *is,int mode)
@@ -3619,6 +3634,8 @@ static void event_loop(VideoState *cur_stream)
 			switch (event.key.keysym.sym) {
 			case SDLK_ESCAPE:
 			case SDLK_q:
+				//相当于单击“停止”
+				dlg->PostMessage(WM_COMMAND, MAKEWPARAM(IDC_STOP, BN_CLICKED), NULL);
 				do_exit(cur_stream);
 				break;
 			case SDLK_f:
@@ -3742,13 +3759,19 @@ do_seek:
 				stream_seek(cur_stream, ts, 0, 0);
 			}
 			break;
-		case SDL_VIDEORESIZE:
+		case SDL_VIDEORESIZE:{
 			screen = SDL_SetVideoMode(event.resize.w, event.resize.h, 0,
 				SDL_HWSURFACE|SDL_RESIZABLE|SDL_ASYNCBLIT|SDL_HWACCEL);
 			screen_width  = cur_stream->width  = event.resize.w;
 			screen_height = cur_stream->height = event.resize.h;
+			//Refresh----------
+			int bgcolor = SDL_MapRGB(screen->format, 0x00, 0x00, 0x00);
+			fill_rectangle(screen,cur_stream->xleft, cur_stream->ytop, cur_stream->width, cur_stream->height,bgcolor);
+			SDL_UpdateRect(screen, cur_stream->xleft, cur_stream->ytop, cur_stream->width, cur_stream->height);
+			//-----------------
 			cur_stream->force_refresh = 1;
 			break;
+			}
 		case SDL_QUIT:
 		case FF_QUIT_EVENT:
 			//相当于单击“停止”
@@ -3777,7 +3800,14 @@ do_seek:
 
 			break;
 							   }
-
+		case VE_STRETCH_EVENT:{
+			//刷新--------------------
+			int bgcolor = SDL_MapRGB(screen->format, 0x00, 0x00, 0x00);
+			fill_rectangle(screen,cur_stream->xleft, cur_stream->ytop, cur_stream->width, cur_stream->height,bgcolor);
+			SDL_UpdateRect(screen, cur_stream->xleft, cur_stream->ytop, cur_stream->width, cur_stream->height);
+			//--
+			break;
+								}
 		default:
 			break;
 		}
@@ -4105,6 +4135,7 @@ int ve_play(LPVOID lpParam)
 
 	g_is = is;
 	//初始化一些参数-------------
+	autoexit=1;
 	dataoutput_h264_ft=1;
 	//const char *info=(char *)malloc(500);
 	//info=avformat_configuration();

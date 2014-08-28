@@ -92,7 +92,7 @@
  #define HAVE_ROUND 1
  #define HAVE_ROUNDF 1
  #define HAVE_SDL 0
- #define HAVE_SDL_VIDEO_SIZE 0
+ #define HAVE_SDL_VIDEO_SIZE 1
  #define HAVE_SETMODE 0
  #define HAVE_SOCKLEN_T 1
  #define HAVE_SOUNDCARD_H 0

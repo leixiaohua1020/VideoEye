@@ -70,3 +70,5 @@ int ve_play(LPVOID lpParam);
 int ve_reset_index();
 //²¥·Å½ø¶È
 void ve_seek_bar(int pos);
+
+void ve_stretch(int stretch);

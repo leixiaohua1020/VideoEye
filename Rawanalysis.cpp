@@ -964,9 +964,6 @@ int Rawanalysis::show_color_component(int nameid){
 void Rawanalysis::OnBnClickedRawanalysisAuto()
 {
 	if(m_rawanalysisauto.GetCheck()==1){
-		CString resloader;
-		resloader.LoadString(IDS_MSGBOX_RESCONSUM);
-		AfxMessageBox(resloader);
 		GetDlgItem(IDC_RAWANALYSIS_AUTO_INTERFRAMENUM)->EnableWindow(TRUE);
 		GetDlgItem(IDC_RAWANALYSIS_AUTO_OK)->EnableWindow(TRUE);
 	}else{

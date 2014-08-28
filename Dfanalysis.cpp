@@ -1033,8 +1033,6 @@ void Dfanalysis::OnBnClickedDfanalysisAuto()
 {
 	if(m_dfanalysisauto.GetCheck()==1){
 		CString resloader;
-		resloader.LoadString(IDS_MSGBOX_RESCONSUM);
-		AfxMessageBox(resloader);
 		GetDlgItem(IDC_DFANALYSIS_AUTO_INTERFRAMENUM)->EnableWindow(TRUE);
 		GetDlgItem(IDC_DFANALYSIS_AUTO_OK)->EnableWindow(TRUE);
 	}else{

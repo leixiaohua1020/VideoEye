@@ -234,4 +234,6 @@ public:
 	afx_msg void OnCancel();
 	afx_msg void OnSysinfo();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnWindowstretchKeepratio();
+	afx_msg void OnWindowstretchResize();
 };

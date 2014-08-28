@@ -248,6 +248,8 @@ ON_COMMAND(ID_LANG_EN, &CVideoEyeDlg::OnLangEn)
 ON_COMMAND(IDCANCEL, &CVideoEyeDlg::OnCancel)
 ON_COMMAND(ID_SYSINFO, &CVideoEyeDlg::OnSysinfo)
 ON_WM_CTLCOLOR()
+ON_COMMAND(ID_WINDOWSTRETCH_KEEPRATIO, &CVideoEyeDlg::OnWindowstretchKeepratio)
+ON_COMMAND(ID_WINDOWSTRETCH_RESIZE, &CVideoEyeDlg::OnWindowstretchResize)
 END_MESSAGE_MAP()
 
 
@@ -327,13 +329,7 @@ BOOL CVideoEyeDlg::OnInitDialog()
 	//支持在系统中右键打开----------------------
 	//当传入参数的时候
 	
-
-#ifdef _UNICODE
-	USES_CONVERSION;
-	wchar_t* argvPath = __targv[1];
-#else
-	char* argvPath = __targv[1];
-#endif
+	TCHAR* argvPath = __targv[1];
 
 	if(argvPath != NULL){ 
 		//设置路径
@@ -522,18 +518,9 @@ void CVideoEyeDlg::OnDropFiles(HDROP hDropInfo)
 {
 	CDialogEx::OnDropFiles(hDropInfo);
 
-	char* pFilePathName =(char *)malloc(MAX_URL_LENGTH);
-	::DragQueryFileA(hDropInfo, 0, pFilePathName,MAX_URL_LENGTH);  // 获取拖放文件的完整文件名，最关键！
-	CString FilePathName;
-
-#ifdef _UNICODE
-	USES_CONVERSION;
-	FilePathName.Format(_T("%s"),A2W(pFilePathName));
-#else
-	FilePathName.Format(_T("%s"),pFilePathName);
-#endif
-	m_inputurl.SetWindowText(FilePathName);
-
+	LPTSTR pFilePathName =(LPTSTR)malloc(MAX_URL_LENGTH);
+	::DragQueryFile(hDropInfo, 0, pFilePathName,MAX_URL_LENGTH);  // 获取拖放文件的完整文件名，最关键！
+	m_inputurl.SetWindowText(pFilePathName);
 	::DragFinish(hDropInfo);   // 注意这个不能少，它用于释放Windows 为处理文件拖放而分配的内存
 	free(pFilePathName);
 }
@@ -1322,4 +1309,16 @@ HBRUSH CVideoEyeDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	//pDC->SetBkColor(RGB(200, 200, 200));
 	// TODO:  如果默认的不是所需画笔，则返回另一个画笔
 	return hbr;
+}
+
+
+void CVideoEyeDlg::OnWindowstretchKeepratio()
+{
+	ve_stretch(0);
+}
+
+
+void CVideoEyeDlg::OnWindowstretchResize()
+{
+	ve_stretch(1);
 }
