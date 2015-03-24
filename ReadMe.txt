@@ -1,11 +1,20 @@
 VideoEye
 
-À×Ïöæè Lei Xiaohua
+é›·éœ„éª… Lei Xiaohua
 leixiaohua1020@126.com
-ÖĞ¹ú´«Ã½´óÑ§/Êı×ÖµçÊÓ¼¼Êõ
+ä¸­å›½ä¼ åª’å¤§å­¦/æ•°å­—ç”µè§†æŠ€æœ¯
 Communication University of China / Digital TV Technology
 http://blog.csdn.net/leixiaohua1020
  
-VideoEyeÊÇÒ»¸ö¿ªÔ´µÄÊÓÆµ·ÖÎöµÄÈí¼ş¡£±¾Èí¼ş¿ÉÒÔ²¥·ÅºÍ·ÖÎöÊÓÆµÊı¾İ¡£ËüÖ§³Ö¶àÖÖÊÓÆµÁ÷ÊäÈë·½Ê½£ºHTTP£¬RTMP£¬RTSPÒÔ¼°ÎÄ¼şµÈµÈ¡£¸ÃÈí¼ş¿ÉÒÔÊµÊ±·ÖÎöÊÓÆµÁ÷²¢ÄÜÒÔÍ¼ĞÎ»¯µÄ·½Ê½³ÊÏÖÆä·ÖÎö½á¹û¡£Ä¿Ç°¸ÃÈí¼ş»¹´¦ÓÚÍêÉÆ½×¶Î¡£
+VideoEyeæ˜¯ä¸€ä¸ªå¼€æºçš„è§†é¢‘åˆ†æçš„è½¯ä»¶ã€‚æœ¬è½¯ä»¶å¯ä»¥æ’­æ”¾å’Œåˆ†æè§†é¢‘æ•°æ®ã€‚å®ƒæ”¯æŒå¤šç§è§†é¢‘æµè¾“å…¥æ–¹å¼ï¼šHTTPï¼ŒRTMPï¼ŒRTSPä»¥åŠæ–‡ä»¶ç­‰ç­‰ã€‚è¯¥è½¯ä»¶å¯ä»¥å®æ—¶åˆ†æè§†é¢‘æµå¹¶èƒ½ä»¥å›¾å½¢åŒ–çš„æ–¹å¼å‘ˆç°å…¶åˆ†æç»“æœã€‚ç›®å‰è¯¥è½¯ä»¶è¿˜å¤„äºå®Œå–„é˜¶æ®µã€‚
 
 VideoEye is an open-source stream analysis software. It can play and make analysis of video bit stream. It supports multiple kind of sources, include: HTTP, RTMP, RTSP and files, etc. The software can make real time stream analysis and show the result graphically. Currently the software is under development yet.
+
+
+ç¼–è¯‘è¯´æ˜:
+å¦‚æœç¼–è¯‘æ—¶(VS2010)é‡åˆ°é”™è¯¯å¦‚ä¸‹:
+nafxcwd.lib(afxglobals.obj) : error LNK2001: æ— æ³•è§£æçš„å¤–éƒ¨ç¬¦å· _IID_IWICImagingFactory
+
+åˆ™æŒ‰å¦‚ä¸‹æ­¥éª¤æ“ä½œ
+At project->Properties->Configuration Properties->Linker->Input->Additional Dependencies I added windowscodecs.lib
+åˆ™å¯ç¼–è¯‘æˆåŠŸã€‚
